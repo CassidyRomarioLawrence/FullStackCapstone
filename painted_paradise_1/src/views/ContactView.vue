@@ -1,5 +1,20 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div>
+    <ProductCards />
   </div>
 </template>
+
+<script>
+import ProductCards from '@/components/ProductCards.vue';
+
+  export default {
+  name: 'ContactView',
+  components: {
+      ProductCards
+    }
+  }
+</script>
+
+<style scoped>
+
+</style>
