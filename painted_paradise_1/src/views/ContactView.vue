@@ -1,8 +1,6 @@
 <template>
   <div class="container-fluid">
-    <div class="row d-flex justify-content-center align-items-center">
-        <ProductCard />
-    </div>
+    <ProductCard />
   </div>
 </template>
 
@@ -12,7 +10,7 @@ import ProductCard from '@/components/ProductCard.vue';
   export default {
   name: 'ContactView',
   components: {
-      ProductCard
+    ProductCard
     }
   }
 </script>

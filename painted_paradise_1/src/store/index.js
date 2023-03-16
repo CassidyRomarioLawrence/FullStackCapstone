@@ -3,13 +3,17 @@ import axios from 'axios';
 
 export default createStore({
   state: {
-    products:null
+    products: null,
+    users:null
   },
   getters: {
   },
   mutations: {
     setProducts(state, products) {
       state.products = products;
+    },
+    setUsers(state, users) {
+      state.users = users
     },
   },
   actions: {
@@ -25,8 +29,20 @@ export default createStore({
       } else {
         commit('setMessage', err)
       }
+    },
+    async fetchUsers({ commit }) {
+      const response = await axios.get('https://cassidy-capstoneproject.onrender.com/users');
+      commit('setUsers', response.data)
+      let {
+        results,
+        err
+      } = await response.data;
+      if (results) {
+        commit('setUsers', results)
+      } else {
+        commit('setMessage', err)
+      }
     }
-    
   },
   modules: {
   }
