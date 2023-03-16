@@ -9,7 +9,7 @@ class User {
         const {userEmail, userPassword} = req.body;
         const querySt = 
         `
-        SELECT userName, userSurname, userGender, userEmail, userPassword, userImage, DATE_FORMAT(joinDate, '%d-%m-%Y') AS user_joined
+        SELECT userName, userSurname, userGender, userEmail, userPassword, userImage, DATE_FORMAT(dateJoined, '%d-%m-%Y') AS user_joined
         FROM users
         WHERE userEmail = '${userEmail}';
         `;
@@ -52,7 +52,7 @@ class User {
     fetchUsers(req, res) {
         const querySt = 
         `
-        SELECT id, userName, userSurname, userGender, cellNumber, userEmail, userImage, DATE_FORMAT(joinDate, '%d-%m-%Y') AS user_joined
+        SELECT id, userName, userSurname, userGender, cellNumber, userEmail, userImage, DATE_FORMAT(dateJoined, '%d-%m-%Y') AS user_joined
         FROM users;
         `;
         
@@ -65,7 +65,7 @@ class User {
     fetchUser(req, res) {
         const querySt = 
         `
-        SELECT id, userName, userSurname, userGender, cellNumber, userEmail, userImage, DATE_FORMAT(joinDate, '%d-%m-%Y') AS user_joined
+        SELECT id, userName, userSurname, userGender, cellNumber, userEmail, userImage, DATE_FORMAT(dateJoined, '%d-%m-%Y') AS user_joined
         FROM users
         WHERE id = ?;
         `;
@@ -141,7 +141,7 @@ class User {
 
 class Product {
     fetchProducts(req, res) {
-        const querySt = `SELECT id, category, prodName, artist, prodDesc, prodPrice,prodImage
+        const querySt = `SELECT id, category, prodName, artistName, prodDesc, prodPrice,prodImage
         FROM products;`;
         dB.query(querySt, (err, results)=> {
             if(err) throw err;
@@ -149,7 +149,7 @@ class Product {
         });
     }
     fetchProduct(req, res) {
-        const querySt = `SELECT id, category, prodName, artist, prodDesc, prodPrice,prodImage
+        const querySt = `SELECT id, category, prodName, artistName, prodDesc, prodPrice,prodImage
         FROM products
         WHERE id = ?;`;
         dB.query(querySt, [req.params.id], (err, results)=> {
@@ -184,8 +184,9 @@ class Product {
         `;
         dB.query(querySt,[req.body, req.params.id],
             (err)=> {
-                if(err){
-                    res.status(400).json({err: "Could not update product."});
+                if (err) {
+                    (console.log(err));
+                    // res.status(400).json({err: "Could not update product."});
                 }else {
                     res.status(200).json({msg: "Product successfully updated"});
                 }
