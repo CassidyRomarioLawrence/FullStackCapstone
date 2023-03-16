@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <ProductCard />
+  <div class="container-fluid">
+    <div class="row d-flex justify-content-center align-items-center">
+        <ProductCard />
+    </div>
   </div>
 </template>
 
