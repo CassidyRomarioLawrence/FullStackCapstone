@@ -1,16 +1,14 @@
 <template>
   <div class="container-fluid">
-    <ProductCard />
   </div>
 </template>
 
 <script>
-import ProductCard from '@/components/ProductCard.vue';
+
 
   export default {
   name: 'ContactView',
   components: {
-    ProductCard
     }
   }
 </script>

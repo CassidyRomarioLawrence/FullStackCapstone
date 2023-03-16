@@ -6,7 +6,9 @@
     <h5 class="card-title">{{ product.prodName }}</h5>
     <p class="card-text">Artist : {{product.artistName}}</p>
     <p class="card-text">Price : {{product.prodPrice}}</p>
-    <a href="#" class="btn btn-primary">View Product</a>
+    <router-link :to="{name: 'product', params : {id: product.id}}">
+                        <button class="btn btn-info">View Product</button>
+                      </router-link>
   </div>
 </div>
   </div>
