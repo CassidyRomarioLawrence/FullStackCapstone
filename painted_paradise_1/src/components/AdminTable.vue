@@ -70,7 +70,7 @@
 <script>
 import { computed } from '@vue/runtime-core'
 import { useStore } from 'vuex';
-
+import AddProd from './AddProd.vue';
 
 export default {
   setup() {
@@ -84,6 +84,9 @@ export default {
             products
         }
   },
+  components: {
+    AddProd
+  }
     }
 </script>
 

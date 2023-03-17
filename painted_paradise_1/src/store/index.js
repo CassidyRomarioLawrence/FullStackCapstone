@@ -51,6 +51,15 @@ export default createStore({
         commit('setMessage', err)
       }
     },
+     async addProduct({ commit }, productData) {
+    try {
+      const response = await axios.post('https://cassidy-capstoneproject.onrender.com/product', productData);
+      commit('setProduct', response.data);
+      commit('setMessage', 'Product added successfully');
+    } catch (error) {
+      commit('setMessage', 'Failed to add product');
+    }
+  },
     async fetchUsers({ commit }) {
       const response = await axios.get('https://cassidy-capstoneproject.onrender.com/users');
       commit('setUsers', response.data)
