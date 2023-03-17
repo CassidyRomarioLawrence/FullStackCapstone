@@ -51,13 +51,23 @@ export default createStore({
         commit('setMessage', err)
       }
     },
-     async addProduct({ commit }, productData) {
+     async addProduct({ commit , dispatch}, productData) {
     try {
       const response = await axios.post('https://cassidy-capstoneproject.onrender.com/product', productData);
       commit('setProduct', response.data);
       commit('setMessage', 'Product added successfully');
+      dispatch('fetchProducts')
     } catch (error) {
       commit('setMessage', 'Failed to add product');
+    }
+    },
+     async deleteProduct({ commit, dispatch }, id) {
+    try {
+      await axios.delete(`https://cassidy-capstoneproject.onrender.com/product/${id}`);
+      commit('setMessage', 'Product deleted successfully');
+      dispatch('fetchProducts');
+    } catch (error) {
+      commit('setMessage', 'Failed to delete product');
     }
   },
     async fetchUsers({ commit }) {

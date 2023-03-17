@@ -58,7 +58,7 @@
                 <td data-label="Image"><img :src="product.prodImage" class="img-fluid"
                     style="height:12vh" alt=""></td>
                 <td data-label="edit">Edit</td>
-                <td data-label="delete"><button type="button" class="btn btn-danger">Delete</button></td>
+                <td data-label="delete"><button @click="deleteProduct(product.id)" type="button" class="btn btn-danger">Delete</button></td>
               </tr>
             </tbody>
           </table>
@@ -83,6 +83,11 @@ export default {
             users,
             products
         }
+  },
+   methods: {
+    deleteProduct(id) {
+      this.$store.dispatch('deleteProduct', id);
+    },
   },
   components: {
     AddProd
