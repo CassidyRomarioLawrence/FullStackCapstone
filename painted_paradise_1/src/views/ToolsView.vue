@@ -1,16 +1,16 @@
 <template>
     <div>
-        <ProductCard />
+        <ToolsCard />
     </div>
 </template>
 
 <script>
-import ProductCard from '@/components/PaintingsCard.vue';
+import ToolsCard from '@/components/ToolsCard.vue';
 
     export default {
-    name: 'PaintingsView',
+    name: 'ToolsView',
     components: {
-            ProductCard
+            ToolsCard
         }
     }
 </script>

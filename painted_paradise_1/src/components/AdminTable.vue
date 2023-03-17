@@ -36,6 +36,7 @@
             </tbody>
           </table>
            <h2 class="product-crud">PRODUCT CRUD</h2>
+           <AddProd />
           <table class="table">
             <thead>
               <tr>
@@ -70,6 +71,7 @@
 import { computed } from '@vue/runtime-core'
 import { useStore } from 'vuex';
 
+
 export default {
   setup() {
         const store = useStore()
@@ -81,7 +83,7 @@ export default {
             users,
             products
         }
-    },
+  },
     }
 </script>
 

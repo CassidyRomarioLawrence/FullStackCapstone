@@ -42,11 +42,11 @@ export default createStore({
       const response = await axios.get(`https://cassidy-capstoneproject.onrender.com/product/${id}`);
       commit('setProduct', response.data)
       let {
-        result,
+        results,
         err
       } = await response.data;
-      if (result) {
-        commit('setProduct', result[0])
+      if (results) {
+        commit('setProduct', results[0])
       } else {
         commit('setMessage', err)
       }
