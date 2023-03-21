@@ -31,6 +31,7 @@
 <style scoped>
 nav{
     min-height: 100vh;
+    backdrop-filter: blur(px);
 }
 
 .nav-item{

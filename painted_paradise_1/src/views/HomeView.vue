@@ -4,10 +4,13 @@
     <NavBar />
     <main class="col-12 px-0">
       <div class="container-fluid" id="home">
-        <LandingC />
+        <div class="landing-text">
+          <LandingC />
+        </div>
       </div>
       <div class="container-fluid" id="about">
-        <!-- Content for section 2 goes here -->
+        <AboutUs />
+ 
       </div>
       <div class="container-fluid" id="shop">
         <!-- Content for section 3 goes here -->
@@ -23,12 +26,14 @@
 <script>
 import NavBar from '@/components/NavBar.vue';
 import LandingC from '@/components/LandingC.vue';
+import AboutUs from '@/components/AboutUs.vue';
 
 export default {
   name: 'HomeView',
   components: {
     NavBar,
-    LandingC
+    LandingC,
+    AboutUs
   }
 }
 </script>
@@ -43,6 +48,9 @@ export default {
 }
 
 #about{
-  background-image: linear-gradient();
+  background-color: #FBDA61;
+  background-image: linear-gradient(45deg, #869193 0%, #FD6162 100%);
+  min-height: 100vh;
 }
+
 </style>
