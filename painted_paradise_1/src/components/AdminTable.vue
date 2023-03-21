@@ -3,7 +3,6 @@
       <div class="container-shopping">
         <div class="content">
           <h2 class="user-crud">USER CRUD</h2>
-          <AddUser />
           <table class="table">
             <thead>
               <tr>

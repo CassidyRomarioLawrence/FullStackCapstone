@@ -1,30 +1,25 @@
 <template>
-<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav flex-column">
-        <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/#about">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/#shop">Shop</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/admin">Admin</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/contact">Contact</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<nav class="col-1 bg-transparent position-fixed">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column justify-content-center align-items-center" style="min-height: 100vh;">
+          <li class="nav-item">
+            <a class="nav-link" href="/#home"><i class="bi bi-house-door"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/#about"><i class="bi bi-info-circle"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/#shop"><i class="bi bi-bag"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin"><i class="bi bi-card-list"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact"><i class="bi bi-telephone"></i></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 </template>
 
 <script>
@@ -34,7 +29,23 @@
 </script>
 
 <style scoped>
-.navbar{
+nav{
     min-height: 100vh;
+}
+
+.nav-item{
+  padding: 5px 0;
+}
+
+i:hover{
+  font-size: 2.5vw;
+  color: #FD6162;
+  text-shadow: 3px 3px 3px #232323;
+}
+
+i{
+  font-size: 2.5vw;
+  color: white;
+  text-shadow: 3px 3px 3px #869193;
 }
 </style>

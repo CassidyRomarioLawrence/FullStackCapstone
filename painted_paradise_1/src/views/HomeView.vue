@@ -1,29 +1,48 @@
 <template>
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-1">
-      <NavBar />
-    </div>
-    <div class="col-11">
-      <section id="home">Home</section>
-      <section id="about">About</section>
-      <section id="paintings"><a class="btn btn-danger" href="/paintings">Shop Canvas</a></section>
-      <section id="tools"><a class="btn btn-danger" href="/tools">Shop Tools</a></section>
-      <section id="booking">Booking</section>
-      <footer>Footer</footer>
-    </div>
+  <div class="row no-gutters">
+    <NavBar />
+    <main class="col-12 px-0">
+      <div class="container-fluid" id="home">
+        <LandingC />
+      </div>
+      <div class="container-fluid" id="about">
+        <!-- Content for section 2 goes here -->
+      </div>
+      <div class="container-fluid" id="shop">
+        <!-- Content for section 3 goes here -->
+      </div>
+    </main>
+    <footer>
+
+    </footer>
   </div>
 </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue';
+import LandingC from '@/components/LandingC.vue';
 
 export default {
   name: 'HomeView',
   components: {
-    NavBar
+    NavBar,
+    LandingC
   }
 }
 </script>
+<style>
+#home{
+  background-image: url(https://i.postimg.cc/qMcywvtw/pexels-pavel-danilyuk-8382258.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
 
+#about{
+  background-image: linear-gradient();
+}
+</style>
