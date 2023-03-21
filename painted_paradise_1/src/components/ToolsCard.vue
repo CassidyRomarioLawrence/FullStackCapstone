@@ -1,16 +1,20 @@
 <template>
-  <div v-for="product in filteredProducts" :key="product.id">
+<div class="container">
+  <div class="row justify-content-center align-items-center">
+    <div v-for="product in filteredProducts" :key="product.id" class="col-md-4">
     <div class="card m-3" style="width: 18rem;">
-  <img :src="product.prodImage" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">{{ product.prodName }}</h5>
-    <p class="card-text">Price : R{{product.prodPrice}}</p>
-    <router-link :to="{name: 'product', params : {id: product.id}}">
-                        <button class="btn btn-info">View Product</button>
-                      </router-link>
+      <img :src="product.prodImage" class="card-img-top img-fluid" style="object-fit: cover; height: 50vh;">
+    <div class="card-body">
+      <h5 class="card-title">{{ product.prodName }}</h5>
+      <p class="card-text">Price : R{{product.prodPrice}}</p>
+      <router-link :to="{name: 'product', params : {id: product.id}}">
+        <button class="btn btn-info">View Product</button>
+      </router-link>
+    </div>
+    </div>
+  </div>
   </div>
 </div>
-  </div>
 </template>
 
 <script>

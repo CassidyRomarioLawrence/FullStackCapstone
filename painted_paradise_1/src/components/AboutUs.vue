@@ -1,5 +1,5 @@
 <template>
-<div class="container p-3 about">
+<div class="container p-3 about align-items-center">
         <div class="row">
             <div class="col-xs-12 col-md-6 col-lg-6 d-flex justify-content-center align-items-center">
                 <img class="img-fluid" src="https://i.postimg.cc/cJBhWK9Y/pexels-redwolf-7439899.jpg" alt="profile-photo" />
@@ -41,5 +41,6 @@ img{
 
 p{
     font-size: 1.5vw;
+    font-family: 'Philosopher', sans-serif;
 }
 </style>

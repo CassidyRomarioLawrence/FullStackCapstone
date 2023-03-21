@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="container">
-  <button class="btn btn-top-right bg-success"><span>Login</span>
+  <button class="btn btn-top-right bg-success">Login
 </button>
 </div>
 </template>
@@ -49,6 +49,4 @@
   margin-right: 10px;
   font-size: 1vw;
 }
-
-
 </style>

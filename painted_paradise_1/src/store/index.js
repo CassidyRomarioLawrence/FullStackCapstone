@@ -6,7 +6,8 @@ export default createStore({
     products: null,
     product:null,
     users:null,
-    message:null
+    message:null,
+    loader:true
   },
   getters: {
   },
@@ -22,11 +23,15 @@ export default createStore({
     },
     setMessage(state,message){
       state.message = message
+    },
+    setLoader(state, value) {
+      state.loader = value
     }
   },
   actions: {
     async fetchProducts({ commit }) {
       const response = await axios.get('https://cassidy-capstoneproject.onrender.com/products');
+      commit('setLoader', true)
       commit('setProducts', response.data)
       let {
         results,
@@ -37,6 +42,7 @@ export default createStore({
       } else {
         commit('setMessage', err)
       }
+      commit('setLoader', false)
     },
     async fetchProduct({ commit }, id) {
       const response = await axios.get(`https://cassidy-capstoneproject.onrender.com/product/${id}`);

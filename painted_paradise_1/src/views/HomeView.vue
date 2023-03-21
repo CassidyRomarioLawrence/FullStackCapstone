@@ -9,11 +9,12 @@
         </div>
       </div>
       <div class="container-fluid" id="about">
+        <h4>About Us</h4>
         <AboutUs />
- 
       </div>
       <div class="container-fluid" id="shop">
-        <!-- Content for section 3 goes here -->
+        <h4>Shop With Us</h4>
+        <ShopC />
       </div>
     </main>
     <footer>
@@ -27,13 +28,15 @@
 import NavBar from '@/components/NavBar.vue';
 import LandingC from '@/components/LandingC.vue';
 import AboutUs from '@/components/AboutUs.vue';
+import ShopC from '@/components/ShopC.vue';
 
 export default {
   name: 'HomeView',
   components: {
     NavBar,
     LandingC,
-    AboutUs
+    AboutUs,
+    ShopC
   }
 }
 </script>
@@ -53,4 +56,26 @@ export default {
   min-height: 100vh;
 }
 
+#about h4{
+  font-size: 3.5vw;
+  text-align: center;
+  padding: 2px 0;
+  font-family: 'Dancing Script', cursive;
+  text-shadow: 3px 3px 3px black;
+  color: white;
+}
+
+
+#shop h4{
+  font-size: 3.5vw;
+  text-align: center;
+  padding: 2px 0;
+  font-family: 'Dancing Script', cursive;
+  text-shadow: 3px 3px 3px #869193;
+}
+
+#shop{
+  background-color: #FFFFFF;
+  background-image: linear-gradient(180deg, #FFFFFF 0%, #C1A576 50%, #FD6162 100%);
+}
 </style>
