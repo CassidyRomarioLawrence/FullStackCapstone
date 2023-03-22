@@ -2,7 +2,7 @@
   <div v-if="loader" class="loader-container"> 
     <Loader />
   </div>
-  <div class="v-else">
+  <div v-else>
 <div class="container text-center">
   <div class="row justify-content-center align-items-center">
       <div v-for="product in filteredProducts2" :key="product.id" class="col-md-4">
@@ -38,8 +38,8 @@ export default {
     store.dispatch("fetchProducts")
         const products = computed(() => store.state.products)
         const loader = computed(() => store.state.loader)
-         const filteredProducts2 = computed(() => {
-      const category = "Paintings"; // Replace CategoryName with the actual category name
+        const filteredProducts2 = computed(() => {
+      const category = "Paintings";
       return Array.isArray(products.value)
       ? products.value.filter(product => product.category === category)
       : []

@@ -1,4 +1,8 @@
 <template>
+<div v-if="loader" class="loader-container">
+<Loader />
+</div>
+<div v-else>
     <div class="container-fluid">
         <div class="col-6">
             <img :src="product?.prodImage" alt="" style="width: 18rem;">
@@ -11,18 +15,24 @@
             <h5>Price : R {{ product?.prodPrice }}</h5>
         </div>
     </div>
+</div>
 </template>
 
 <script>
 import { computed } from '@vue/runtime-core'
 import { useStore } from 'vuex';
+import Loader from './Loader.vue';
 
 export default {
-    name:'SingleC',
+    name: 'SingleC',
+    components: {
+        Loader
+    },
     setup() {
     const store = useStore()
     const product = computed(() => store.state.product)
-    return { product }
+    const loader = computed(() => store.state.loader)
+    return { product,loader }
 },
 
 mounted() {
@@ -32,5 +42,11 @@ mounted() {
 </script>
 
 <style scoped>
-
+.loader-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
 </style>
