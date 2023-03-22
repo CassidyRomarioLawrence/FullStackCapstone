@@ -99,7 +99,19 @@ async deleteProduct({ commit, dispatch }, id) {
         commit('setMessage', err)
       }
       commit('setLoader', false)
-    }
+    },
+async addUser({ commit, dispatch }, data) {
+  try {
+    commit('setLoader', true);
+    const response = await axios.post('https://cassidy-capstoneproject.onrender.com/register', data);
+    commit('setUsers', response.data);
+    commit('setMessage', 'User added successfully');
+    dispatch('fetchUsers');
+  } catch (error) {
+    commit('setMessage', 'Failed to add product');
+  }
+  commit('setLoader', false);
+},
   },
   modules: {
   }
