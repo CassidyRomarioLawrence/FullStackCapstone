@@ -62,10 +62,10 @@ async fetchProduct({ commit }, id) {
   }
   commit('setLoader', false)
 },
-async addProduct({ commit, dispatch }, productData) {
+async addProduct({ commit, dispatch }, data) {
   try {
     commit('setLoader', true);
-    const response = await axios.post('https://cassidy-capstoneproject.onrender.com/product', productData);
+    const response = await axios.post('https://cassidy-capstoneproject.onrender.com/product', data);
     commit('setProduct', response.data);
     commit('setMessage', 'Product added successfully');
     dispatch('fetchProducts');

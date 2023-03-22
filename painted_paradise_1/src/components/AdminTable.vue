@@ -41,7 +41,7 @@
    </table>
  </div>
             <h2 class="product-crud">PRODUCT CRUD</h2>
-            <add-prod />
+            <AddProd />
          <div class="table-responsive">
            <table class="table table-striped my-2">
              <thead>
