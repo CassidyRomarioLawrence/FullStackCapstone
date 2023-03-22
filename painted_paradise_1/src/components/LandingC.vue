@@ -22,14 +22,13 @@
 <style>
 .title{
     min-height: 100vh;
-    /* backdrop-filter: blur(5px); */
 }
 
 .company h1{
     color: #FD6162;
     font-family: 'Dancing Script', cursive;
     text-shadow: 3px 3px 3px black;
-    font-size: 10vw;
+    font-size: 10rem;
 }
 
 .company p{
@@ -38,7 +37,7 @@
     font-family: 'Philosopher', sans-serif;
     text-shadow: 3px 3px 3px black;
     background-color: #FD6162;
-    font-size: 1.5vw;
+    font-size: 1.5rem;
 }
 
 .btn-top-right {
@@ -47,6 +46,5 @@
   right: 0;
   margin-top: 10px;
   margin-right: 10px;
-  font-size: 1vw;
 }
 </style>

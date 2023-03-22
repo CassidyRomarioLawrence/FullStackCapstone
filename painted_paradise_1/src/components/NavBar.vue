@@ -39,13 +39,13 @@ nav{
 }
 
 i:hover{
-  font-size: 2.5vw;
+  font-size: 40px;
   color: #FD6162;
   text-shadow: 3px 3px 3px #232323;
 }
 
 i{
-  font-size: 2.5vw;
+  font-size: 40px;
   color: white;
   text-shadow: 3px 3px 3px #869193;
 }
