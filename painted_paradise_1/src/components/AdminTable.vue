@@ -7,6 +7,7 @@
        <div class="container-shopping">
          <div class="container">
            <h2 class="user-crud">USER CRUD</h2>
+           <AddUser />
            <div class="table-responsive">
    <table class="table table-striped">
      <thead>
@@ -34,8 +35,8 @@
          <td data-label="Image"><img :src="user.userImage" class="img-fluid" style="height:12vh" alt=""></td>
          <td data-label="Gender">{{ user.userGender }}</td>
          <td data-label="joinDate">{{ user.user_joined }}</td>
-         <td data-label="edit">Edit</td>
-         <td data-label="delete"><button type="button" class="btn btn-danger">Delete</button></td>
+         <td data-label="edit"><button @click="editUser(user.id)">Edit User</button></td>
+         <td data-label="delete"><button @click="deleteUser(user.id)" type="button" class="btn btn-danger">Delete</button></td>
        </tr>
      </tbody>
    </table>
@@ -79,6 +80,7 @@
 import { computed } from '@vue/runtime-core'
 import { useStore } from 'vuex';
 import AddProd from './AddProd.vue';
+import AddUser from './AddUser.vue'
 import Loader from './Loader.vue';
 
 export default {
@@ -102,9 +104,16 @@ export default {
       this.$store.commit('setLoader', false);
     });
   },
+  deleteUser(id) {
+    this.$store.commit('setLoader', true);
+    this.$store.dispatch('deleteUser', id).then(() => {
+      this.$store.commit('setLoader', false);
+    });
+  },
 },
   components: {
     AddProd,
+    AddUser,
     Loader
   }
     }
