@@ -95,11 +95,14 @@ export default {
             loader
         }
   },
-   methods: {
-    deleteProduct(id) {
-      this.$store.dispatch('deleteProduct', id);
-    },
+  methods: {
+  deleteProduct(id) {
+    this.$store.commit('setLoader', true);
+    this.$store.dispatch('deleteProduct', id).then(() => {
+      this.$store.commit('setLoader', false);
+    });
   },
+},
   components: {
     AddProd,
     Loader
@@ -131,11 +134,6 @@ export default {
   
   .table-responsive table {
     margin: 0;
-  }
-  
-  .table-responsive table caption {
-    padding-top: 8px;
-    padding-bottom: 8px;
   }
   
   .table-responsive table thead {

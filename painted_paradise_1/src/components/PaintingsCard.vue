@@ -5,7 +5,7 @@
   <div v-else>
 <div class="container text-center">
   <div class="row justify-content-center align-items-center">
-      <div v-for="product in filteredProducts2" :key="product.id" class="col-md-4">
+      <div v-for="product in filteredProducts2" :key="product.id" class="col-md-3">
     <div class="card m-3" style="width: 18rem;">
       <img :src="product.prodImage" class="card-img-top img-fluid" style="object-fit: cover; height: 50vh;">
     <div class="card-body">
