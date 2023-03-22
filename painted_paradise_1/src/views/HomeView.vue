@@ -17,8 +17,8 @@
         <ShopC />
       </div>
     </main>
-    <footer>
-
+    <footer class="container-fluid px-0 justify-content-center">
+      <FooterC />
     </footer>
   </div>
 </div>
@@ -29,6 +29,7 @@ import NavBar from '@/components/NavBar.vue';
 import LandingC from '@/components/LandingC.vue';
 import AboutUs from '@/components/AboutUs.vue';
 import ShopC from '@/components/ShopC.vue';
+import FooterC from '@/components/FooterC.vue';
 
 export default {
   name: 'HomeView',
@@ -36,7 +37,8 @@ export default {
     NavBar,
     LandingC,
     AboutUs,
-    ShopC
+    ShopC,
+    FooterC
   }
 }
 </script>
