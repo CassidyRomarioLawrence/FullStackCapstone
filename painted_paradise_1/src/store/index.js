@@ -7,7 +7,8 @@ export default createStore({
     product:null,
     users:null,
     message:null,
-    loader:true
+    loader: true,
+    isAuthenticated: false
   },
   getters: {
   },
@@ -26,6 +27,9 @@ export default createStore({
     },
     setLoader(state, value) {
       state.loader = value
+    },
+    setIsAuthenticated(state, value) {
+      state.isAuthenticated = value
     }
   },
   actions: {
@@ -135,7 +139,17 @@ async editUser({ commit, dispatch }, { id, data }) {
   }
   commit('setLoader', false);
 },
-
+async login({ commit }, { userEmail, userPassword }) {
+      try {
+        const response = await axios.post('https://cassidy-capstoneproject.onrender.com/login', { userEmail, userPassword })
+        const token = response.data.jToken
+        localStorage.setItem('token', token)
+        commit('setIsAuthenticated', true)
+        return true
+      } catch (error) {
+        return false
+      }
+    },
   },
   modules: {
   }

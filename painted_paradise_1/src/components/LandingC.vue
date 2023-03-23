@@ -8,8 +8,10 @@
         </div>
     </div>
     <div class="container">
-  <button class="btn btn-top-right bg-success">Login
-</button>
+  <a href="/login"><button class="btn btn-top-right bg-success">Login
+</button></a>
+<a href="/profile"><button class="btn btn-top-right bg-danger">Profile
+</button></a>
 </div>
 </template>
 
