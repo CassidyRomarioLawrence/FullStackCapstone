@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import SingleC from '@/components/SingleC.vue';
+import SingleC from '@/components/SingleProd.vue';
 
     export default {
         name:'SingleProd',

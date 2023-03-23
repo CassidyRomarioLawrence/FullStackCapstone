@@ -64,7 +64,7 @@
                  <td data-label="price">R{{product.prodPrice}}</td>
                  <td data-label="Image"><img :src="product.prodImage" class="img-fluid"
                      style="height:12vh" alt=""></td>
-                 <td data-label="edit">Edit</td>
+                 <td data-label="edit"><EditProd/></td>
                  <td data-label="delete"><button @click="deleteProduct(product.id)" type="button" class="btn btn-danger">Delete</button></td>
                </tr>
              </tbody>
@@ -82,6 +82,7 @@ import { useStore } from 'vuex';
 import AddProd from './AddProd.vue';
 import AddUser from './AddUser.vue'
 import Loader from './Loader.vue';
+import EditProd from './EditProd.vue';
 
 export default {
   setup() {
@@ -114,7 +115,8 @@ export default {
   components: {
     AddProd,
     AddUser,
-    Loader
+    Loader,
+    EditProd
   }
     }
 </script>

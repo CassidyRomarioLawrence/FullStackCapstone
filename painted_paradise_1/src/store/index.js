@@ -8,7 +8,6 @@ export default createStore({
     users:null,
     message:null,
     loader: true,
-    isAuthenticated: false
   },
   getters: {
   },
@@ -28,11 +27,20 @@ export default createStore({
     setLoader(state, value) {
       state.loader = value
     },
-    setIsAuthenticated(state, value) {
-      state.isAuthenticated = value
-    }
   },
   actions: {
+    async addProduct({ commit, dispatch }, data) {
+      try {
+        commit('setLoader', true);
+        const response = await axios.post('https://cassidy-capstoneproject.onrender.com/product', data);
+        commit('setProduct', response.data);
+        commit('setMessage', 'Product added successfully');
+        dispatch('fetchProducts');
+      } catch (error) {
+        commit('setMessage', 'Failed to add product');
+      }
+      commit('setLoader', false);
+    },
     async fetchProducts({ commit }) {
       const response = await axios.get('https://cassidy-capstoneproject.onrender.com/products');
       commit('setLoader', true)
@@ -66,15 +74,15 @@ async fetchProduct({ commit }, id) {
   }
   commit('setLoader', false)
 },
-async addProduct({ commit, dispatch }, data) {
+async editProduct({ commit, dispatch }, { id, data }) {
   try {
     commit('setLoader', true);
-    const response = await axios.post('https://cassidy-capstoneproject.onrender.com/product', data);
+    const response = await axios.put(`https://cassidy-capstoneproject.onrender.com/product/${id}`, data);
     commit('setProduct', response.data);
-    commit('setMessage', 'Product added successfully');
+    commit('setMessage', 'Product edited successfully');
     dispatch('fetchProducts');
   } catch (error) {
-    commit('setMessage', 'Failed to add product');
+    commit('setMessage', 'Failed to edit product');
   }
   commit('setLoader', false);
 },
@@ -89,32 +97,6 @@ async deleteProduct({ commit, dispatch }, id) {
     commit('setMessage', 'Failed to delete product');
   }
 },
-async deleteUser({ commit, dispatch }, id) {
-  try {
-    await axios.delete(`https://cassidy-capstoneproject.onrender.com/user/${id}`);
-    commit('setMessage', 'User deleted successfully');
-    commit('setLoader', true)
-    dispatch('fetchUsers');
-    commit('setLoader', false)
-  } catch (error) {
-    commit('setMessage', 'Failed to delete user');
-  }
-},
-    async fetchUsers({ commit }) {
-      const response = await axios.get('https://cassidy-capstoneproject.onrender.com/users');
-      commit('setLoader', true)
-      commit('setUsers', response.data)
-      let {
-        results,
-        err
-      } = await response.data;
-      if (results) {
-        commit('setUsers', results)
-      } else {
-        commit('setMessage', err)
-      }
-      commit('setLoader', false)
-    },
 async addUser({ commit, dispatch }, data) {
   try {
     commit('setLoader', true);
@@ -127,30 +109,33 @@ async addUser({ commit, dispatch }, data) {
   }
   commit('setLoader', false);
 },
-async editUser({ commit, dispatch }, { id, data }) {
-  try {
-    commit('setLoader', true);
-    const response = await axios.put(`https://cassidy-capstoneproject.onrender.com/user/${id}`, data);
-    commit('setUsers', response.data);
-    commit('setMessage', 'User updated successfully');
-    dispatch('fetchUsers');
-  } catch (error) {
-    commit('setMessage', 'Failed to update user');
+async fetchUsers({ commit }) {
+  const response = await axios.get('https://cassidy-capstoneproject.onrender.com/users');
+  commit('setLoader', true)
+  commit('setUsers', response.data)
+  let {
+    results,
+    err
+  } = await response.data;
+  if (results) {
+    commit('setUsers', results)
+  } else {
+    commit('setMessage', err)
   }
-  commit('setLoader', false);
+  commit('setLoader', false)
 },
-async login({ commit }, { userEmail, userPassword }) {
-      try {
-        const response = await axios.post('https://cassidy-capstoneproject.onrender.com/login', { userEmail, userPassword })
-        const token = response.data.jToken
-        localStorage.setItem('token', token)
-        commit('setIsAuthenticated', true)
-        return true
-      } catch (error) {
-        return false
-      }
-    },
-  },
+},
+async deleteUser({ commit, dispatch }, id) {
+  try {
+    await axios.delete(`https://cassidy-capstoneproject.onrender.com/user/${id}`);
+    commit('setMessage', 'User deleted successfully');
+    commit('setLoader', true)
+    dispatch('fetchUsers');
+    commit('setLoader', false)
+  } catch (error) {
+    commit('setMessage', 'Failed to delete user');
+  }
+},
   modules: {
   }
 })
