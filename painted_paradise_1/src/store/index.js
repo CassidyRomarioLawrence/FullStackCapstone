@@ -3,6 +3,7 @@ import axios from 'axios';
 
 export default createStore({
   state: {
+    user: JSON.parse(localStorage.getItem('user')) || null,
     products: null,
     product:null,
     users:null,
@@ -17,6 +18,10 @@ export default createStore({
     },
     setProduct(state,values){
       state.product = values
+    },
+    setUser(state, user) {
+      state.user = user;
+      localStorage.setItem('user', JSON.stringify(user));
     },
     setUsers(state, users) {
       state.users = users
@@ -128,25 +133,24 @@ async fetchUser ({commit}) {
   const res = await axios.get(`https://cassidy-capstoneproject.onrender.com/user`)
   commit('setUser', res.data)
 },
-async login({ commit }, credentials) {
+async login(context, payload) {
   try {
-    commit('setLoader', true);
-    const response = await axios.post('https://cassidy-capstoneproject.onrender.com/login', credentials);
-    // Assuming the API returns a token on successful login
-    const token = response.data.jToken;
-    // Save the token in local storage
-    localStorage.setItem('token', token);
-    // Set the token as a header for all future API requests
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    // Clear any existing error message
-    commit('setMessage', null);
+    const res = await axios.post('https://cassidy-capstoneproject.onrender.com/login', payload);
+    console.log('Results:', res);
+    const { result, jwToken, msg, err } = await res.data;
+    if (result) {
+      context.commit('setUser', result);
+      context.commit('setToken', jwToken);
+      localStorage.setItem('login_token', jwToken);
+      localStorage.setItem('user', JSON.stringify(result));
+      context.commit('setMessage', msg);
+    } else {
+      context.commit('setMessage', err);
+    }
   } catch (error) {
-    // Set an error message if login fails
-    commit('setMessage', 'Invalid credentials');
+    console.error(error);
   }
-  commit('setLoader', false);
 },
-
 },
 async deleteUser({ commit, dispatch }, id) {
   try {

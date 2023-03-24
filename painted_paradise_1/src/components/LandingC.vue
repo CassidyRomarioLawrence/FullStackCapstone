@@ -8,14 +8,33 @@
         </div>
     </div>
     <div class="container">
-  <a href="/login"><button class="btn btn-top-right bg-success">Login
-</button></a>
+      <a v-if="!isLoggedIn" href="/login">
+          <button class="btn top-right btn-primary">Login</button>
+        </a>
+        <a v-if="isLoggedIn" href="/profile">
+          <i class="bi bi-person-circle top-right"></i>
+        </a>
 </div>
 </template>
 
 <script>
     export default {
-        name: 'LandingC'
+        name: 'LandingC',
+        data() {
+    return {
+      isLoggedIn: false
+    }
+  },
+  methods: {
+    login() {
+      // perform login and set isLoggedIn to true
+      this.isLoggedIn = true;
+    },
+    logout() {
+      // perform logout and set isLoggedIn to false
+      this.isLoggedIn = false;
+    }
+  }
     }
 </script>
 
@@ -40,7 +59,7 @@
     font-size: 1.5vw;
 }
 
-.btn-top-right {
+.top-right {
   position: absolute;
   top: 0;
   right: 0;
