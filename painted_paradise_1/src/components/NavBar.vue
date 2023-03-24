@@ -1,5 +1,9 @@
 <template>
-<nav class="col-1 bg-transparent position-fixed">
+  <div>
+    <button class="navbar-toggle" @click="showNavbar = !showNavbar">
+      <i class="bi bi-list"></i>
+    </button>
+    <nav class="col-1 bg-transparent position-fixed" v-show="showNavbar">
       <div class="sidebar-sticky">
         <ul class="nav flex-column justify-content-center align-items-center" style="min-height: 100vh;">
           <li class="nav-item">
@@ -20,33 +24,61 @@
         </ul>
       </div>
     </nav>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: 'NavBar'
-    }
+export default {
+  name: "NavBar",
+  data() {
+    return {
+      showNavbar: false,
+    };
+  },
+};
 </script>
 
 <style scoped>
-nav{
-    min-height: 100vh;
-    backdrop-filter: blur(px);
+nav {
+  min-height: 100vh;
+  backdrop-filter: blur(px);
+  transition: all 0.3s ease-in-out;
 }
 
-.nav-item{
+.show {
+  transform: translateX(0);
+}
+
+.nav-item {
   padding: 5px 0;
 }
 
-i:hover{
+i:hover {
   font-size: 40px;
-  color: #FD6162;
+  color: #fd6162;
   text-shadow: 3px 3px 3px #232323;
 }
 
-i{
+i {
   font-size: 40px;
   color: white;
   text-shadow: 3px 3px 3px #869193;
+}
+
+.navbar-toggle {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  z-index: 999;
+}
+
+@media only screen and (min-width: 768px) {
+  nav {
+    transform: translateX(0);
+  }
 }
 </style>

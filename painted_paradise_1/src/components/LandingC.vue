@@ -28,7 +28,7 @@
     color: #FD6162;
     font-family: 'Dancing Script', cursive;
     text-shadow: 3px 3px 3px black;
-    font-size: 10rem;
+    font-size: 11vw;
 }
 
 .company p{
@@ -37,7 +37,7 @@
     font-family: 'Philosopher', sans-serif;
     text-shadow: 3px 3px 3px black;
     background-color: #FD6162;
-    font-size: 1.5rem;
+    font-size: 1.5vw;
 }
 
 .btn-top-right {
@@ -47,4 +47,15 @@
   margin-top: 10px;
   margin-right: 10px;
 }
+
+@media (max-width: 768px) {
+  .company h1 {
+    font-size: 14vw;
+  }
+  .company p {
+    font-size: 2.5vw;
+    padding: 0 10px;
+  }
+}
+
 </style>

@@ -35,7 +35,7 @@
          <td data-label="Image"><img :src="user.userImage" class="img-fluid" style="height:12vh" alt=""></td>
          <td data-label="Gender">{{ user.userGender }}</td>
          <td data-label="joinDate">{{ user.user_joined }}</td>
-         <td data-label="edit"><button @click="editUser(user.id)">Edit User</button></td>
+         <td data-label="edit">Edit</td>
          <td data-label="delete"><button @click="deleteUser(user.id)" type="button" class="btn btn-danger">Delete</button></td>
        </tr>
      </tbody>
@@ -64,7 +64,7 @@
                  <td data-label="price">R{{product.prodPrice}}</td>
                  <td data-label="Image"><img :src="product.prodImage" class="img-fluid"
                      style="height:12vh" alt=""></td>
-                 <td data-label="edit"><EditProd/></td>
+                 <td data-label="edit"><EditProd /></td>
                  <td data-label="delete"><button @click="deleteProduct(product.id)" type="button" class="btn btn-danger">Delete</button></td>
                </tr>
              </tbody>
@@ -110,7 +110,7 @@ export default {
     this.$store.dispatch('deleteUser', id).then(() => {
       this.$store.commit('setLoader', false);
     });
-  },
+    },
 },
   components: {
     AddProd,

@@ -30,7 +30,6 @@ import LandingC from '@/components/LandingC.vue';
 import AboutUs from '@/components/AboutUs.vue';
 import ShopC from '@/components/ShopC.vue';
 import FooterC from '@/components/FooterC.vue';
-
 export default {
   name: 'HomeView',
   components: {
@@ -51,13 +50,11 @@ export default {
   background-attachment: fixed;
   min-height: 100vh;
 }
-
 #about{
   background-color: #FBDA61;
   background-image: linear-gradient(45deg, #869193 0%, #FD6162 100%);
   min-height: 100vh;
 }
-
 #about h4{
   font-size: 3.5vw;
   text-align: center;
@@ -66,8 +63,6 @@ export default {
   text-shadow: 3px 3px 3px black;
   color: white;
 }
-
-
 #shop h4{
   font-size: 3.5vw;
   text-align: center;
@@ -75,7 +70,6 @@ export default {
   font-family: 'Dancing Script', cursive;
   text-shadow: 3px 3px 3px #869193;
 }
-
 #shop{
   background-color: #FFFFFF;
   background-image: linear-gradient(180deg, #FFFFFF 0%, #C1A576 50%, #FD6162 100%);

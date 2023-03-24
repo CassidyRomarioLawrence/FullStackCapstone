@@ -26,7 +26,7 @@ export default createStore({
     },
     setLoader(state, value) {
       state.loader = value
-    },
+    }
   },
   actions: {
     async addProduct({ commit, dispatch }, data) {
@@ -73,16 +73,16 @@ async fetchProduct({ commit }, id) {
     commit('setMessage', error.message)
   }
   commit('setLoader', false)
-},
-async editProduct({ commit, dispatch }, { id, data }) {
+    },
+async updateProduct({ commit, dispatch }, { id, data }) {
   try {
     commit('setLoader', true);
     const response = await axios.put(`https://cassidy-capstoneproject.onrender.com/product/${id}`, data);
     commit('setProduct', response.data);
-    commit('setMessage', 'Product edited successfully');
+    commit('setMessage', 'Product updated successfully');
     dispatch('fetchProducts');
   } catch (error) {
-    commit('setMessage', 'Failed to edit product');
+    commit('setMessage', 'Failed to update product');
   }
   commit('setLoader', false);
 },
@@ -108,7 +108,14 @@ async addUser({ commit, dispatch }, data) {
     commit('setMessage', 'Failed to add product');
   }
   commit('setLoader', false);
-},
+    },
+
+//     async loginUser(commit, data) {
+//       try {
+//         const response = await.post('https://cassidy-capstoneproject.onrender.com/login', data);
+//         console.log(response);
+//   }
+// },
 async fetchUsers({ commit }) {
   const response = await axios.get('https://cassidy-capstoneproject.onrender.com/users');
   commit('setLoader', true)
