@@ -109,13 +109,6 @@ async addUser({ commit, dispatch }, data) {
   }
   commit('setLoader', false);
     },
-
-//     async loginUser(commit, data) {
-//       try {
-//         const response = await.post('https://cassidy-capstoneproject.onrender.com/login', data);
-//         console.log(response);
-//   }
-// },
 async fetchUsers({ commit }) {
   const response = await axios.get('https://cassidy-capstoneproject.onrender.com/users');
   commit('setLoader', true)
@@ -131,6 +124,29 @@ async fetchUsers({ commit }) {
   }
   commit('setLoader', false)
 },
+async fetchUser ({commit}) {
+  const res = await axios.get(`https://cassidy-capstoneproject.onrender.com/user`)
+  commit('setUser', res.data)
+},
+async login({ commit }, credentials) {
+  try {
+    commit('setLoader', true);
+    const response = await axios.post('https://cassidy-capstoneproject.onrender.com/login', credentials);
+    // Assuming the API returns a token on successful login
+    const token = response.data.jToken;
+    // Save the token in local storage
+    localStorage.setItem('token', token);
+    // Set the token as a header for all future API requests
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    // Clear any existing error message
+    commit('setMessage', null);
+  } catch (error) {
+    // Set an error message if login fails
+    commit('setMessage', 'Invalid credentials');
+  }
+  commit('setLoader', false);
+},
+
 },
 async deleteUser({ commit, dispatch }, id) {
   try {

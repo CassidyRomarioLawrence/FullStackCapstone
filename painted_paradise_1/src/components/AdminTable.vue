@@ -6,10 +6,10 @@
   <div class="shopping">
        <div class="container-shopping">
          <div class="container">
-           <h2 class="user-crud">USER CRUD</h2>
+           <h5 class="user-crud text-center display-5 text-light">USER CRUD</h5>
            <AddUser />
            <div class="table-responsive">
-   <table class="table table-striped">
+   <table class="table table-striped my-2 table-light">
      <thead>
        <tr>
          <th>ID</th>
@@ -41,10 +41,10 @@
      </tbody>
    </table>
  </div>
-            <h2 class="product-crud">PRODUCT CRUD</h2>
+            <h5 class="product-crud text-center display-5 text-light">PRODUCT CRUD</h5>
             <AddProd />
          <div class="table-responsive">
-           <table class="table table-striped my-2">
+           <table class="table table-striped my-2 table-light">
              <thead>
                <tr>
                  <th>ID</th>
@@ -126,6 +126,10 @@ export default {
   overflow-x: auto;
 }
 
+.table{
+  border: transparent;
+}
+
   .loader-container{
   display: flex;
   justify-content: center;
@@ -133,7 +137,10 @@ export default {
   height: 100vh;
   width: 100%;
 }
-
+h5{
+  font-family: 'Philosopher', sans-serif;
+  text-shadow: 3px 3px 3px black;
+}
 @media screen and (max-width: 767px) {
   .table-responsive {
     width: 100%;

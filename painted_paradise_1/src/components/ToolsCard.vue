@@ -3,11 +3,11 @@
   <loader />
 </div>
 <div v-else>
-  <div class="container">
+  <div class="container text-center">
     <div class="row justify-content-center align-items-center">
       <div v-for="product in filteredProducts" :key="product.id" class="col-md-3">
-      <div class="card m-3" style="width: 18rem;">
-        <img :src="product.prodImage" class="card-img-top img-fluid" style="object-fit: cover; height: 50vh;">
+      <div class="card m-3" style="width: 16rem;">
+        <img :src="product.prodImage" class="card-img-top img-fluid" style="object-fit: cover; height: 30vh;">
       <div class="card-body">
         <h5 class="card-title">{{ product.prodName }}</h5>
         <p class="card-text">Price : R{{product.prodPrice}}</p>

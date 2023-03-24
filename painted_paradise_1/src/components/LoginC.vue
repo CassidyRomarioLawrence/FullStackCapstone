@@ -1,34 +1,71 @@
 <template>
-<div id="card">
+  <div id="card">
     <div id="card-content">
       <div id="card-title">
         <h2>LOGIN</h2>
         <div class="underline-title"></div>
       </div>
-      <form method="post" class="form">
+      <form @submit.prevent="login" class="form">
         <label for="user-email" style="padding-top:13px">
-            &nbsp;Email
-          </label>
-        <input id="user-email" class="form-content" type="email" name="email" autocomplete="on" required />
+          &nbsp;Email
+        </label>
+        <input id="user-email" class="form-content" type="email" name="email" autocomplete="on" v-model="userEmail" required />
         <div class="form-border"></div>
         <label for="user-password" style="padding-top:22px">&nbsp;Password
-          </label>
-        <input id="user-password" class="form-content" type="password" name="password" required />
+        </label>
+        <input id="user-password" class="form-content" type="password" name="password" v-model="userPassword" required />
         <div class="form-border"></div>
         <a href="#">
           <legend id="forgot-pass">Forgot password?</legend>
         </a>
-        <input id="submit-btn" type="submit" name="submit" value="LOGIN" />
-        <a href="#" id="signup">Don't have account yet?</a>
+        <button id="submit-btn" type="submit" name="submit" :disabled="isLoading">LOGIN</button>
+        <a href="/register" id="signup">Don't have account yet?</a>
+        <p v-if="message">{{ message }}</p>
+        <Loader v-if="isLoading" />
       </form>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    
-  }
+import Loader from './Loader.vue';
+
+export default {
+  components:{
+    Loader
+  },
+  data() {
+    return {
+      userEmail: '',
+      userPassword: '',
+      isLoading: false
+    }
+  },
+  computed: {
+    message() {
+      return this.$store.state.message;
+    },
+  },
+  methods: {
+    async login() {
+      try {
+        this.isLoading = true;
+        await this.$store.dispatch("login", {
+          userEmail: this.userEmail,
+          userPassword: this.userPassword,
+        });
+        // Redirect to dashboard on successful login
+        this.$router.push("/");
+      } catch (error) {
+        console.error(error);
+        // Show error message
+        alert("Failed to login");
+      } finally {
+        this.isLoading = false;
+      }
+    },
+  },
+}
 </script>
 
 <style scoped>
@@ -50,8 +87,7 @@ label {
   background: #fbfbfb;
   border-radius: 8px;
   box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
-  height: 410px;
-  margin: 2rem auto 8.1rem auto;
+  margin: 2rem auto 0 auto;
   width: 329px;
 }
 #card-content {

@@ -4,11 +4,13 @@
   </div>
   <div v-else>
     <div class="container-fluid single-prod">
+      
       <div class="row justify-content-center align-items-center">
-        <div class="col-md-6">
-          <img :src="product?.prodImage" alt="" style="width: 20rem;">
+        <div class="col-md-6 text-center">
+          <img :src="product?.prodImage" alt="" style="width: 20rem; margin-right: 2rem;">
+          <button class="btn btn-success mt-3">Add to cart</button>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 " style="padding-right: 2rem;">
           <h5 class="display-5">Product Name : </h5>
           <p>{{ product?.prodName }}</p><br>
           <h5 class="display-5">Artist : </h5>

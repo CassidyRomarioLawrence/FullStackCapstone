@@ -1,5 +1,6 @@
 <template>
     <div class="container-fluid single">
+        <button class="btn btn-light btn-close" @click="goBack"></button>
         <div class="row justify-content-center">
             <h2 class="display-2 m-3 text-center">Product Details : </h2>
             <SingleC />
@@ -15,6 +16,11 @@ import SingleC from '@/components/SingleProd.vue';
         components:{
             SingleC
         },
+        methods: {
+  goBack() {
+    window.history.go(-1);
+  }
+}
     }
 </script>
 
@@ -28,4 +34,11 @@ import SingleC from '@/components/SingleProd.vue';
 h2{
     font-family: 'Dancing Script', cursive;
 }
+.btn-close {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
 </style>
