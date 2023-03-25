@@ -6,11 +6,13 @@ const parser = require('body-parser');
 
 const router = express.Router();
 
-const {User, Product} = require('../model');
+const {User, Product, Cart} = require('../model');
 
 const user = new User();
 
 const product = new Product();
+
+const cart = new Cart();
 
 // const cart = new Cart();
 
@@ -73,4 +75,24 @@ router.delete('/product/:id',
     product.deleteProduct(req, res);
     });
 
+// ======= Cart ==========
+router.get('/user/:id/carts', (req, res) => {
+    cart.fetchCart(req, res);
+})
+
+router.post('/user/:id/cart', parser.json(), (req, res) => {
+    cart.addToCart(req, res);
+})
+
+router.put('/user/:id/cart/:id', parser.json(), (req, res) => {
+    cart.updateItemFromCart(req, res);
+})
+
+router.delete('/user/:id/cart', (req, res) => {
+    cart.deleteFromCart(req, res);
+})
+
+router.delete('/user/:id/cart/:id', (req, res) => {
+    cart.deleteItemFromCart(req, res);
+})
 module.exports = router
