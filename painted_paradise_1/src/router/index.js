@@ -18,9 +18,44 @@ const routes = [
     component: HomeView
   },
   {
+    path: '/paintings',
+    name: 'paintings',
+    component: ()=>import('../views/PaintingsView.vue')
+  },
+  {
+    path: '/tools',
+    name: 'tools',
+    component: ()=>import('../views/ToolsView.vue')
+  },
+  {
+    path: '/product/:id',
+    name: 'product',
+    component: ()=>import('../views/SingleProd.vue')
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: ()=>import('../views/AdminView.vue')
+  },
+  {
     path: '/contact',
     name: 'contact',
     component: ()=>import('../views/ContactView.vue')
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: ()=>import('../views/LoginView.vue')
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: ()=>import('../views/RegisterView.vue')
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: ()=>import('../views/UserProfile.vue')
   }
 ]
 
