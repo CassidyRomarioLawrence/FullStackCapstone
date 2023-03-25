@@ -102,13 +102,13 @@ export default {
   deleteProduct(id) {
     this.$store.commit('setLoader', true);
     this.$store.dispatch('deleteProduct', id).then(() => {
-      this.$store.commit('setLoader', false);
+    this.$store.commit('setLoader', false);
     });
   },
   deleteUser(id) {
     this.$store.commit('setLoader', true);
     this.$store.dispatch('deleteUser', id).then(() => {
-      this.$store.commit('setLoader', false);
+    this.$store.commit('setLoader', false);
     });
     },
 },

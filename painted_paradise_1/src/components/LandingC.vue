@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col company px-5">
                 <h1>PaintedParadise</h1>
-                <p>From contemporary to classic, We have something to inspire every art aficionado.</p>
+                <p>From contemporary to classic, We Have Something to inspire every art aficionado.</p>
             </div>
         </div>
     </div>
@@ -27,11 +27,9 @@
   },
   methods: {
     login() {
-      // perform login and set isLoggedIn to true
       this.isLoggedIn = true;
     },
     logout() {
-      // perform logout and set isLoggedIn to false
       this.isLoggedIn = false;
     }
   }

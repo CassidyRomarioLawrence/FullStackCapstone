@@ -5,51 +5,85 @@
           <h2>REGISTER</h2>
           <div class="underline-title"></div>
         </div>
-        <form method="post" class="form">
+        <form @submit.prevent="addUser" class="form">
           <label for="userName" style="padding-top:13px">
             &nbsp;First Name
           </label>
-          <input id="userName" class="form-content" type="text" name="userName" required />
+          <input id="userName" class="form-content" type="text" name="userName" v-model="data.userName" required />
           <div class="form-border"></div>
           <label for="userSurname" style="padding-top:22px">&nbsp;Last Name
           </label>
-          <input id="userSurname" class="form-content" type="text" name="userSurname" required />
+          <input id="userSurname" class="form-content" type="text" name="userSurname" v-model="data.userSurname" required />
           <div class="form-border"></div>
           <label for="userGender" style="padding-top:22px">&nbsp;Gender
           </label>
-          <input id="userGender" class="form-content" type="text" name="userGender" required />
+          <input id="userGender" class="form-content" type="text" name="userGender" v-model="data.userGender" required />
           <div class="form-border"></div>
           <label for="cellNumber" style="padding-top:22px">&nbsp;Cell Number
           </label>
-          <input id="cellNumber" class="form-content" type="tel" name="cellNumber" required />
+          <input id="cellNumber" class="form-content" type="tel" name="cellNumber" v-model="data.cellNumber" required />
           <div class="form-border"></div>
           <label for="userEmail" style="padding-top:22px">&nbsp;Email
           </label>
-          <input id="userEmail" class="form-content" type="email" name="userEmail" required />
+          <input id="userEmail" class="form-content" type="email" name="userEmail" v-model="data.userEmail" required />
           <div class="form-border"></div>
           <label for="userPassword" style="padding-top:22px">&nbsp;Password
           </label>
-          <input id="userPassword" class="form-content" type="password" name="userPassword" required />
+          <input id="userPassword" class="form-content" type="password" name="userPassword" v-model="data.userPassword" required />
           <div class="form-border"></div>
           <label for="userImage" style="padding-top:22px">&nbsp;Image
           </label>
-          <input id="userImage" class="form-content" type="file" name="userImage" required />
+          <input id="userImage" class="form-content" type="file" name="userImage" :v-model="data.userImage" required />
           <div class="form-border"></div>
-          <input id="dateJoined" class="form-content" type="hidden" name="dateJoined" />
-          <input id="submit-btn" type="submit" name="submit" value="REGISTER" />
+          <input id="dateJoined" class="form-content" type="hidden" name="dateJoined" v-model="data.dateJoined" />
+          <input id="submit-btn" type="submit" name="submit" value="REGISTER" :disabled="isFormInvalid" />
         </form>
       </div>
     </div>
   </template>
   <script>
   export default {
+    data() {
+          return {
+            data: {
+              userName: '',
+              userSurname: '',
+              userGender: '',
+              cellNumber: '',
+              userEmail: '',
+              userPassword: '',
+              userImage: '',
+              dateJoined: ''
+            },
+          }
+        },
+        computed: {
+          isFormInvalid() {
+            return !this.data.userName || !this.data.userSurname || !this.data.userGender || !this.data.cellNumber || !this.data.userEmail || !this.data.userPassword || !this.data.userImage || !this.data.dateJoined
+          },
+        },
+        methods: {
+          async addUser() {
+            await this.$store.dispatch('addUser', this.data);
+            this.$emit('user-added');
+            this.resetForm();
+          },
+          resetForm() {
+            this.data.userName = '';
+            this.data.userSurname = '';
+            this.data.userGender = '';
+            this.data.cellNumber = '';
+            this.data.userEmail = '';
+            this.data.userPassword = '';
+            this.data.userImage = '';
+            this.data.dateJoined = ''
+          },
+        },
     mounted() {
-      // Get the current date and time and format it
       const now = new Date();
       const formattedDate = `${now.getFullYear()}-${now.getMonth() +
         1}-${now.getDate()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
   
-      // Set the value of the dateJoined field to the formatted date
       document.getElementById("dateJoined").value = formattedDate;
     },
   };

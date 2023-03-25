@@ -101,6 +101,17 @@ async deleteProduct({ commit, dispatch }, id) {
   } catch (error) {
     commit('setMessage', 'Failed to delete product');
   }
+    },
+async deleteUser({ commit, dispatch }, id) {
+  try {
+    await axios.delete(`https://cassidy-capstoneproject.onrender.com/user/${id}`);
+    commit('setMessage', 'User deleted successfully');
+    commit('setLoader', true)
+    dispatch('fetchUsers');
+    commit('setLoader', false)
+  } catch (error) {
+    commit('setMessage', 'User to delete product');
+  }
 },
 async addUser({ commit, dispatch }, data) {
   try {
@@ -151,17 +162,6 @@ async login(context, payload) {
     console.error(error);
   }
 },
-},
-async deleteUser({ commit, dispatch }, id) {
-  try {
-    await axios.delete(`https://cassidy-capstoneproject.onrender.com/user/${id}`);
-    commit('setMessage', 'User deleted successfully');
-    commit('setLoader', true)
-    dispatch('fetchUsers');
-    commit('setLoader', false)
-  } catch (error) {
-    commit('setMessage', 'Failed to delete user');
-  }
 },
   modules: {
   }
