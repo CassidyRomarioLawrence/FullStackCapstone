@@ -27,16 +27,12 @@
                     <p>{{ user.cellNumber }}</p>
                   </div>
                 </div>
-                <h6>Projects</h6>
+                <h6>Joined</h6>
                 <hr class="mt-0 mb-4">
                 <div class="row pt-1">
                   <div class="col-6 mb-3">
-                    <h6>Recent</h6>
+                    <h6>Date</h6>
                     <p class="text-muted">{{ user.user_joined }}</p>
-                  </div>
-                  <div class="col-6 mb-3">
-                    <h6>Most Viewed</h6>
-                    <p class="text-muted">Dolor sit amet</p>
                   </div>
                 </div>
               </div>
@@ -61,13 +57,8 @@ export default {
 
 <style>
 .gradient-custom {
-/* fallback for old browsers */
 background: #f6d365;
-
-/* Chrome 10-25, Safari 5.1-6 */
 background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
-
-/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
 }
 </style>

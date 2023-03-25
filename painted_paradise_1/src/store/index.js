@@ -9,16 +9,23 @@ export default createStore({
     users:null,
     message:null,
     loader: true,
+    cart:[]
   },
   getters: {
   },
   mutations: {
+
+// =========PRODUCT MUTATIONS====================
+    
     setProducts(state, products) {
       state.products = products
     },
     setProduct(state,values){
       state.product = values
     },
+
+// =========USER MUTATIONS=======================
+    
     setUser(state, user) {
       state.user = user;
       localStorage.setItem('user', JSON.stringify(user));
@@ -26,14 +33,30 @@ export default createStore({
     setUsers(state, users) {
       state.users = users
     },
+
+// =========MESSAGE MUTATION=====================
+    
     setMessage(state,message){
       state.message = message
     },
+
+// =========LOADER MUTATION========================
+    
     setLoader(state, value) {
       state.loader = value
     }
   },
+
+// =======CART MUTATION=============================
+  
+addToCart(state, product) {
+      state.cart.push(product)
+  },
+    
   actions: {
+
+// ==================PRODUCT ACTIONS=======================
+
     async addProduct({ commit, dispatch }, data) {
       try {
         commit('setLoader', true);
@@ -61,6 +84,18 @@ export default createStore({
       }
       commit('setLoader', false)
     },
+    async updateProduct({ commit, dispatch }, data) {
+  try {
+    commit('setLoader', true);
+    const response = await axios.put(`https://cassidy-capstoneproject.onrender.com/product/${data.id}`, data);
+    commit('setProduct', response.data);
+    commit('setMessage', 'Product updated successfully');
+    dispatch('fetchProducts');
+  } catch (error) {
+    commit('setMessage', 'Failed to update product');
+  }
+  commit('setLoader', false);
+},
 async fetchProduct({ commit }, id) {
   commit('setLoader', true)
   try {
@@ -79,18 +114,6 @@ async fetchProduct({ commit }, id) {
   }
   commit('setLoader', false)
     },
-async updateProduct({ commit, dispatch }, { id, data }) {
-  try {
-    commit('setLoader', true);
-    const response = await axios.put(`https://cassidy-capstoneproject.onrender.com/product/${id}`, data);
-    commit('setProduct', response.data);
-    commit('setMessage', 'Product updated successfully');
-    dispatch('fetchProducts');
-  } catch (error) {
-    commit('setMessage', 'Failed to update product');
-  }
-  commit('setLoader', false);
-},
 async deleteProduct({ commit, dispatch }, id) {
   try {
     await axios.delete(`https://cassidy-capstoneproject.onrender.com/product/${id}`);
@@ -102,6 +125,9 @@ async deleteProduct({ commit, dispatch }, id) {
     commit('setMessage', 'Failed to delete product');
   }
     },
+
+// =================USER ACTIONS=======================
+
 async deleteUser({ commit, dispatch }, id) {
   try {
     await axios.delete(`https://cassidy-capstoneproject.onrender.com/user/${id}`);
@@ -143,7 +169,21 @@ async fetchUsers({ commit }) {
 async fetchUser ({commit}) {
   const res = await axios.get(`https://cassidy-capstoneproject.onrender.com/user`)
   commit('setUser', res.data)
+    },
+async updateUser({ commit, state }, data) {
+  try {
+    commit('setLoader', true);
+    const response = await axios.put(`https://cassidy-capstoneproject.onrender.com/user/${state.user.id}`, data);
+    commit('setUser', response.data);
+    commit('setMessage', 'User updated successfully');
+  } catch (error) {
+    commit('setMessage', 'Failed to update user');
+  }
+  commit('setLoader', false);
 },
+
+// ================LOGIN===============================
+
 async login(context, payload) {
   try {
     const res = await axios.post('https://cassidy-capstoneproject.onrender.com/login', payload);
@@ -161,7 +201,20 @@ async login(context, payload) {
   } catch (error) {
     console.error(error);
   }
-},
+    },
+
+// ===============CART ACTIONS==========================
+addToCart({ commit, state }, product) {
+    const cartItem = state.cart.find(item => item.id === product.id)
+    if (cartItem) {
+      cartItem.quantity++
+      commit('setMessage', 'Product quantity updated in cart')
+    } else {
+      product.quantity = 1
+      state.cart.push(product)
+      commit('setMessage', 'Product added to cart')
+    }
+  }
 },
   modules: {
   }
