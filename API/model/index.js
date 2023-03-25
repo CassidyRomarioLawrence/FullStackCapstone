@@ -211,16 +211,14 @@ class Cart {
     fetchCart(req, res) {
         const querySt = 
         `
-        SELECT 
-        users.userId, users.firstName, users.lastName,users.emailAddress, boxingEvents.eventName,
-        boxingEvents.eventDescription, boxingEvents.eventIMG, boxingEvents.price
+        SELECT prodName, prodPrice, prodImage, artistName
         FROM users
-        INNER JOIN cart ON users.userId = cart.user_id
-        INNER JOIN boxingEvents ON cart.event_id = boxingEvents.id
-        WHERE cart.user_id = ${req.params.id};
+        inner join cart on users.id = cart.user_id
+        inner join products on cart.product_id = products.productId
+        where cart.user_id = ${req.params.id};
         `;
         dB.query(querySt, (err, results)=> {
-            if(err) throw err;
+            if(err) console.log(err);
             res.status(200).json({results: results})
         });
     }
@@ -233,6 +231,7 @@ class Cart {
         dB.query(querySt, [req.body],
             (err)=> {
                 if(err){
+                    console.log(err);
                     res.status(400).json({err: "Unable to insert into cart."});
                 }else {
                     res.status(200).json({msg: "Event added to cart"});
@@ -245,11 +244,12 @@ class Cart {
         `
         UPDATE cart
         SET ?
-        WHERE id = ?;
+        WHERE cartId = ?;
         `;
         dB.query(querySt,[req.body, req.params.id],
             (err)=> {
                 if(err){
+                    console.log(err);
                     res.status(400).json({err: "Unable to update cart."});
                 }else {
                     res.status(200).json({msg: "Cart updated"});
@@ -264,7 +264,7 @@ class Cart {
         WHERE user_id = ?;
         `;
         dB.query(querySt,[req.params.id], (err)=> {
-            if(err) res.status(400).json({err: "All cart items was not deleted."});
+            if(err) console.log(err); res.status(400).json({err: "All cart items was not deleted."});
             res.status(200).json({msg: "Cart deleted."});
         })
     }
@@ -272,10 +272,10 @@ class Cart {
         const querySt = 
         `
         DELETE FROM cart
-        WHERE event_id = ?;
+        WHERE product_id = ?;
         `;
         dB.query(querySt,[req.params.id], (err)=> {
-            if(err) res.status(400).json({err: "The cart item was not deleted."});
+            if(err) console.log(err); res.status(400).json({err: "The cart item was not deleted."});
             res.status(200).json({msg: "A cart item was deleted"});
         })
     }
