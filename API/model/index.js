@@ -141,7 +141,7 @@ class User {
 
 class Product {
     fetchProducts(req, res) {
-        const querySt = `SELECT id, category, prodName, artistName, prodDesc, prodPrice,prodImage
+        const querySt = `SELECT id, category, prodName, artistName, prodDesc, prodPrice,prodImage,prodQuantity
         FROM products;`;
         dB.query(querySt, (err, results)=> {
             if(err) throw err;
@@ -149,7 +149,7 @@ class Product {
         });
     }
     fetchProduct(req, res) {
-        const querySt = `SELECT id, category, prodName, artistName, prodDesc, prodPrice,prodImage
+        const querySt = `SELECT id, category, prodName, artistName, prodDesc, prodPrice,prodImage,prodQuantity
         FROM products
         WHERE id = ?;`;
         dB.query(querySt, [req.params.id], (err, results)=> {
