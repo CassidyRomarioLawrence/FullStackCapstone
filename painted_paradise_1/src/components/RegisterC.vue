@@ -33,29 +33,39 @@
           <div class="form-border"></div>
           <label for="userImage" style="padding-top:22px">&nbsp;Image
           </label>
-          <input id="userImage" class="form-content" type="file" name="userImage" :v-model="data.userImage" required />
+          <input id="userImage" class="form-content" type="text" name="userImage" v-model="data.userImage" required />
           <div class="form-border"></div>
-          <input id="dateJoined" class="form-content" type="hidden" name="dateJoined" v-model="data.dateJoined" />
-          <input id="submit-btn" type="submit" name="submit" value="REGISTER" :disabled="isFormInvalid" />
-        </form>
+          <button id="submit-btn" type="submit" :disabled="isFormInvalid">
+          <span v-if="!isLoading">REGISTER</span>
+          <Loader v-if="isLoading" />
+        </button>
+      </form>
+      <Loader v-if="isLoading" />
       </div>
     </div>
   </template>
   <script>
+import Loader from './Loader.vue';
+
+
   export default {
+    components: {
+  Loader,
+},
     data() {
           return {
-            data: {
-              userName: '',
-              userSurname: '',
-              userGender: '',
-              cellNumber: '',
-              userEmail: '',
-              userPassword: '',
-              userImage: '',
-              dateJoined: ''
-            },
-          }
+    data: {
+      userName: '',
+      userSurname: '',
+      userGender: '',
+      cellNumber: '',
+      userEmail: '',
+      userPassword: '',
+      userImage: '',
+      dateJoined: ''
+    },
+    isLoading: false,
+  }
         },
         computed: {
           isFormInvalid() {
@@ -64,10 +74,14 @@
         },
         methods: {
           async addUser() {
-            await this.$store.dispatch('addUser', this.data);
-            this.$emit('user-added');
-            this.resetForm();
-          },
+  this.isLoading = true; // add this
+  console.log('User data:', this.data); // add this
+  await this.$store.dispatch('addUser', this.data);
+  this.$emit('user-added');
+  this.resetForm();
+  this.isLoading = false; // add this
+},
+
           resetForm() {
             this.data.userName = '';
             this.data.userSurname = '';
@@ -79,13 +93,6 @@
             this.data.dateJoined = ''
           },
         },
-    mounted() {
-      const now = new Date();
-      const formattedDate = `${now.getFullYear()}-${now.getMonth() +
-        1}-${now.getDate()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
-  
-      document.getElementById("dateJoined").value = formattedDate;
-    },
   };
   </script>
   <style scoped>

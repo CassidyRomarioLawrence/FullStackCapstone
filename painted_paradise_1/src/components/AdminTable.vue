@@ -35,7 +35,7 @@
          <td data-label="Image"><img :src="user.userImage" class="img-fluid" style="height:12vh" alt=""></td>
          <td data-label="Gender">{{ user.userGender }}</td>
          <td data-label="joinDate">{{ user.user_joined }}</td>
-         <td data-label="edit">Edit</td>
+         <td data-label="edit"><EditUser />></td>
          <td data-label="delete"><button @click="deleteUser(user.id)" type="button" class="btn btn-danger">Delete</button></td>
        </tr>
      </tbody>
@@ -83,6 +83,7 @@ import AddProd from './AddProd.vue';
 import AddUser from './AddUser.vue'
 import Loader from './Loader.vue';
 import EditProd from './EditProd.vue';
+import EditUser from './EditUser.vue';
 
 export default {
   setup() {
@@ -116,7 +117,8 @@ export default {
     AddProd,
     AddUser,
     Loader,
-    EditProd
+    EditProd,
+    EditUser
   }
     }
 </script>
