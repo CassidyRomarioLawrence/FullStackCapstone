@@ -9,13 +9,16 @@
           <li class="nav-item">
             <a class="nav-link" href="/#home"><i class="bi bi-house-door"></i></a>
           </li>
+          <li class="nav-item" v-if="isLoggedIn">
+            <a class="nav-link" href="/profile"><i class="bi bi-person-circle"></i></a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="/#about"><i class="bi bi-info-circle"></i></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/#shop"><i class="bi bi-bag"></i></a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" v-show="userRole === 'admin'">
             <a class="nav-link" href="/admin"><i class="bi bi-card-list"></i></a>
           </li>
           <li class="nav-item">
@@ -33,10 +36,14 @@ export default {
   data() {
     return {
       showNavbar: false,
+      userRole: localStorage.getItem('userRole') || '',
+      isLoggedIn: localStorage.getItem('user') ? true : false
     };
   },
 };
 </script>
+
+
 
 <style scoped>
 .navbar-open {

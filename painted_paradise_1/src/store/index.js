@@ -3,8 +3,7 @@ import axios from 'axios';
 
 export default createStore({
   state: {
-    user: null,
-    isAuthenticated: false,
+    user: JSON.parse(localStorage.getItem('user')) || null,
     products: null,
     product: null,
     users: null,
@@ -32,12 +31,10 @@ export default createStore({
     setUser(state, user) {
       state.user = user;
       localStorage.setItem('user', JSON.stringify(user));
-      state.isAuthenticated = true;
     },
-    unsetUser(state) {
-      state.user = null;
-      localStorage.removeItem('user');
-      state.isAuthenticated = false;
+    logout(state) {
+      state.user = null
+      localStorage.removeItem('user')
     },
 
 // =========MESSAGE MUTATION=====================
@@ -50,13 +47,13 @@ export default createStore({
     
     setLoader(state, value) {
       state.loader = value
-    }
-  },
+    },
 
 // =======CART MUTATION=============================
   
 addToCart(state, product) {
-      state.cart.push(product)
+  state.cart.push(product)
+},
   },
     
 actions: {
@@ -171,10 +168,16 @@ async fetchUsers({ commit }) {
   }
   commit('setLoader', false)
 },
-async fetchUser ({commit}) {
-  const res = await axios.get(`https://cassidy-capstoneproject.onrender.com/user`)
-  commit('setUser', res.data)
-    },
+async fetchUser({ commit }) {
+  try {
+    const response = await axios.get(`https://cassidy-capstoneproject.onrender.com/user`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('jToken')}` }
+    });
+    commit('setUser', response.data);
+  } catch (error) {
+    commit('unsetUser');
+  }
+},
 async updateUser({ commit, state }, data) {
   try {
     commit('setLoader', true);
@@ -189,20 +192,30 @@ async updateUser({ commit, state }, data) {
 
 // ================LOGIN===============================
 
-async login({ commit }, credentials) {
+async login(context, payload) {
   try {
-    const response = await axios.post('https://cassidy-capstoneproject.onrender.com/login', credentials);
-    const { jToken, user } = response.data;
-    axios.defaults.headers.common.Authorization = `Bearer ${jToken}`;
-    commit('setUser', user);
+    const res = await axios.post(`https://cassidy-capstoneproject.onrender.com/login`, payload);
+    console.log('Results:', res);
+    const { result, jToken, msg, err } = await res.data;
+    if (result) {
+      context.commit('setUser', result);
+      localStorage.setItem('user_token', jToken);
+      localStorage.setItem('user', JSON.stringify(result));
+      context.commit('setMessage', msg);
+    } else {
+      context.commit('setMessage', err);
+    }
   } catch (error) {
-    commit('setMessage', 'Invalid email or password');
+    console.error(error);
   }
-  commit('setLoader', false);
 },
+
+// ==============LOGOUT================================
+
 logout({ commit }) {
-  axios.defaults.headers.common.Authorization = '';
-  commit('unsetUser');
+  commit('logout')
+  window.location.href = '/'
+  window.location.reload()
 },
 
 // ===============CART ACTIONS==========================
