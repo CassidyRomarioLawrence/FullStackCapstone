@@ -11,20 +11,7 @@ export default createStore({
     loader: true,
     cart:[]
   },
-  getters: {
-  },
   mutations: {
-
-    setProducts(state, products) {
-      state.products = products;
-    },
-    setProduct(state, product) {
-      state.product = product;
-    },
-    setMessage(state, message) {
-      state.message = message;
-    }
-=======
 
 // =========PRODUCT MUTATIONS====================
     
@@ -64,13 +51,7 @@ addToCart(state, product) {
       state.cart.push(product)
   },
     
-  actions: {
-    async fetchProducts({ commit }) {
-      const response = await axios.get('https://cassidy-capstoneproject.onrender.com/products');
-      commit('setProducts', response.data);
-    },
-  },
-
+actions: {
 // ==================PRODUCT ACTIONS=======================
 
     async addProduct({ commit, dispatch }, data) {
@@ -220,17 +201,7 @@ async login(context, payload) {
     },
 
 // ===============CART ACTIONS==========================
-addToCart({ commit, state }, product) {
-    const cartItem = state.cart.find(item => item.id === product.id)
-    if (cartItem) {
-      cartItem.quantity++
-      commit('setMessage', 'Product quantity updated in cart')
-    } else {
-      product.quantity = 1
-      state.cart.push(product)
-      commit('setMessage', 'Product added to cart')
-    }
-  }
+
 },
   modules: {
   }
