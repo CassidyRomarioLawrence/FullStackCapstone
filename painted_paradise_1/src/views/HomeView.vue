@@ -78,4 +78,10 @@ export default {
   background-color: #FFFFFF;
   background-image: linear-gradient(180deg, #FFFFFF 0%, #C1A576 50%, #FD6162 100%);
 }
+
+@media (max-width: 768px){
+  #about h4,#shop h4{
+    font-size: 8vw;
+  }
+}
 </style>

@@ -2,7 +2,7 @@
     <div class="container title d-flex justify-content-center align-items-center">
         <div class="row">
             <div class="col company px-5">
-                <h1>PaintedParadise</h1>
+                <h1>Painted Paradise</h1>
                 <p>From contemporary to classic, we have something to inspire every art aficionado.</p>
             </div>
         </div>
@@ -46,6 +46,7 @@
     font-family: 'Dancing Script', cursive;
     text-shadow: 3px 3px 3px black;
     font-size: 11vw;
+    text-align: center;
 }
 
 .company p{
@@ -67,10 +68,10 @@
 
 @media (max-width: 768px) {
   .company h1 {
-    font-size: 14vw;
+    font-size: 20vw;
   }
   .company p {
-    font-size: 2.5vw;
+    font-size: 2.8vw;
     padding: 0 10px;
   }
 }
