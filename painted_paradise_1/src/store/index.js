@@ -3,9 +3,6 @@ import axios from 'axios';
 
 export default createStore({
   state: {
-<<<<<<< HEAD
-    products: null
-=======
     user: JSON.parse(localStorage.getItem('user')) || null,
     products: null,
     product:null,
@@ -13,21 +10,20 @@ export default createStore({
     message:null,
     loader: true,
     cart:[]
->>>>>>> 403d47585f62bac772c39e29268ac0007c76e53b
   },
   getters: {
   },
   mutations: {
-<<<<<<< HEAD
+
     setProducts(state, products) {
       state.products = products;
     },
-    // setProduct(state, product) {
-    //   state.product = product;
-    // },
-    // setMessage(state, message) {
-    //   state.message = message;
-    // }
+    setProduct(state, product) {
+      state.product = product;
+    },
+    setMessage(state, message) {
+      state.message = message;
+    }
 =======
 
 // =========PRODUCT MUTATIONS====================
@@ -60,7 +56,6 @@ export default createStore({
     setLoader(state, value) {
       state.loader = value
     }
->>>>>>> 403d47585f62bac772c39e29268ac0007c76e53b
   },
 
 // =======CART MUTATION=============================
@@ -70,13 +65,11 @@ addToCart(state, product) {
   },
     
   actions: {
-<<<<<<< HEAD
     async fetchProducts({ commit }) {
       const response = await axios.get('https://cassidy-capstoneproject.onrender.com/products');
       commit('setProducts', response.data);
     },
   },
-=======
 
 // ==================PRODUCT ACTIONS=======================
 
@@ -239,7 +232,6 @@ addToCart({ commit, state }, product) {
     }
   }
 },
->>>>>>> 403d47585f62bac772c39e29268ac0007c76e53b
   modules: {
   }
 })
