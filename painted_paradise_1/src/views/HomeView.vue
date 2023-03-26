@@ -1,47 +1,39 @@
 <template>
-<<<<<<< HEAD
   <div class="home">
-   
-=======
-<div class="container-fluid">
-  <div class="row no-gutters">
-    <NavBar />
-    <main class="col-12 px-0">
-      <div class="container-fluid" id="home">
-        <div class="landing-text">
-          <LandingC />
-        </div>
+    <div class="container-fluid">
+      <div class="row no-gutters">
+        <NavBar />
+        <main class="col-12 px-0">
+          <div class="container-fluid" id="home">
+            <div class="landing-text">
+              <LandingC />
+            </div>
+          </div>
+          <div class="container-fluid" id="about">
+            <h4>About Us</h4>
+            <AboutUs />
+          </div>
+          <div class="container-fluid" id="shop">
+            <h4>Shop With Us</h4>
+            <ShopC />
+          </div>
+        </main>
+        <footer class="container-fluid px-0 justify-content-center">
+          <FooterC />
+        </footer>
       </div>
-      <div class="container-fluid" id="about">
-        <h4>About Us</h4>
-        <AboutUs />
-      </div>
-      <div class="container-fluid" id="shop">
-        <h4>Shop With Us</h4>
-        <ShopC />
-      </div>
-    </main>
-    <footer class="container-fluid px-0 justify-content-center">
-      <FooterC />
-    </footer>
->>>>>>> 403d47585f62bac772c39e29268ac0007c76e53b
+    </div>
   </div>
-</div>
+
 </template>
 
 <script>
-<<<<<<< HEAD
-
-export default {
-  name: 'HomeView',
-  components: {
-   
-=======
 import NavBar from '@/components/NavBar.vue';
 import LandingC from '@/components/LandingC.vue';
 import AboutUs from '@/components/AboutUs.vue';
 import ShopC from '@/components/ShopC.vue';
 import FooterC from '@/components/FooterC.vue';
+
 export default {
   name: 'HomeView',
   components: {
@@ -50,7 +42,6 @@ export default {
     AboutUs,
     ShopC,
     FooterC
->>>>>>> 403d47585f62bac772c39e29268ac0007c76e53b
   }
 }
 </script>

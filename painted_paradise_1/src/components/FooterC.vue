@@ -24,7 +24,6 @@
           <ul class="list-unstyled mb-0">
             <li class="mb-2"><a href="/login" class="text-muted">Login</a></li>
             <li class="mb-2"><a href="/register" class="text-muted">Register</a></li>
-            <li class="mb-2"><a href="/wishlist" class="text-muted">Wishlist</a></li>
             <li class="mb-2"><a href="/#shop" class="text-muted">Shop</a></li>
           </ul>
         </div>

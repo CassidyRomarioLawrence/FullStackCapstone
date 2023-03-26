@@ -1,11 +1,4 @@
 <template>
-<<<<<<< HEAD
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/contact">Contact</router-link>
-  </nav>
-=======
->>>>>>> 403d47585f62bac772c39e29268ac0007c76e53b
   <router-view/>
 </template>
 
