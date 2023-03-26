@@ -68,4 +68,15 @@ h6{
 a{
   text-decoration: none;
 }
+
+@media (max-width : 768px){
+  .row{
+    text-align: center;
+  }
+  img{
+    width: 20vw;
+  }
+}
+
+
 </style>

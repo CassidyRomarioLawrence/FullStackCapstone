@@ -71,7 +71,6 @@
     min-height: 50vh;
     text-align: center;
     font-family: 'Philosopher', sans-serif;
-    /* backdrop-filter: blur(5px); */
 }
 .sections:hover{
     backdrop-filter: blur(5px);
@@ -95,5 +94,16 @@
 .btn:hover{
     background-color: rgb(84, 201, 84);
     border: rgb(84, 201, 84);
+}
+
+@media (max-width:768px){
+    .display-5,.lead,.btn{
+        font-size: 3vw;
+    }
+}
+@media (max-width:410px){
+    .display-5,.lead,.btn{
+        font-size: 4vw;
+    }
 }
 </style>
