@@ -20,9 +20,14 @@
               <div class="form-border"></div>
             </div>
             <div>
-              <input class="form-content" type="text" id="userGender" v-model="data.userGender" placeholder="Gender">
-              <div class="form-border"></div>
-            </div>
+  <select class="form-content" id="userGender" v-model="data.userGender">
+    <option value="">Select Gender</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+    <option value="Other">Other</option>
+  </select>
+  <div class="form-border"></div>
+</div>
             <div>
               <input class="form-content" type="text" id="cellNumber" v-model="data.cellNumber" placeholder="Contact Number">
               <div class="form-border"></div>
@@ -40,10 +45,13 @@
               <div class="form-border"></div>
             </div>
             <div>
-              <input class="form-content" type="text" id="dateJoined" v-model="data.dateJoined" placeholder="Date">
-              <div class="form-border"></div>
-            </div>
-            <button id="register-btn" type="submit" :disabled="isFormInvalid">Register</button>
+  <input class="form-content" type="date" id="dateJoined" v-model="data.dateJoined" placeholder="Date">
+  <div class="form-border"></div>
+</div>
+<button id="register-btn" type="submit" :disabled="isFormInvalid">
+                <span v-if="isLoading"><Loader /></span>
+                <span v-else>Register</span>
+              </button>
           </form>
         </div>
       </div>
@@ -67,7 +75,8 @@ export default {
         userImage: 'https://i.postimg.cc/hv1QDDC5/home-page-profile-user-icon-1320184025620798710.png',
         dateJoined: ''
       },
-    }
+      isLoading : false,
+    };
   },
   computed: {
     isFormInvalid() {
@@ -76,12 +85,13 @@ export default {
   },
   methods: {
     async addUser() {
-  this.data.dateJoined = new Date().toISOString(); // Set the dateJoined property to the current date
-  await this.$store.dispatch('addUser', this.data);
-  this.$emit('user-added');
-  this.resetForm();
-  this.$router.push('/login');
-},
+      this.isLoading = true;
+      await this.$store.dispatch('addUser', this.data);
+      this.$emit('user-added');
+      this.resetForm();
+      this.$router.push('/login');
+      this.isLoading = false;
+    },
     resetForm() {
       this.data.userName = '';
       this.data.userSurname = '';

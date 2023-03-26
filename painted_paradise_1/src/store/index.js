@@ -149,10 +149,10 @@ async addUser({ commit, dispatch }, data) {
     commit('setLoader', true);
     const response = await axios.post('https://cassidy-capstoneproject.onrender.com/register', data);
     commit('setUsers', response.data);
-    commit('setMessage', 'User added successfully');
+    commit('setMessage', 'Welcome new user,please login.');
     dispatch('fetchUsers');
   } catch (error) {
-    commit('setMessage', 'Failed to add product');
+    commit('setMessage', 'Failed to register user.');
   }
   commit('setLoader', false);
     },
@@ -192,8 +192,8 @@ async updateUser({ commit, state }, data) {
 async login({ commit }, credentials) {
   try {
     const response = await axios.post('https://cassidy-capstoneproject.onrender.com/login', credentials);
-    const { token, user } = response.data;
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    const { jToken, user } = response.data;
+    axios.defaults.headers.common.Authorization = `Bearer ${jToken}`;
     commit('setUser', user);
   } catch (error) {
     commit('setMessage', 'Invalid email or password');

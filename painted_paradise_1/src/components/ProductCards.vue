@@ -20,9 +20,6 @@ export default {
             products: store.state.products,
         };
     },
-    // mounted() {
-    //     this.store.dispatch('fetchProducts')
-    // }  
     }
 </script>
 
