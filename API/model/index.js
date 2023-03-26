@@ -9,7 +9,7 @@ class User {
         const {userEmail, userPassword} = req.body;
         const querySt = 
         `
-        SELECT userName, userSurname, userGender, userEmail, userPassword, userImage, DATE_FORMAT(dateJoined, '%d-%m-%Y') AS user_joined
+        SELECT userName, userSurname, userGender, userEmail, userPassword, userImage, DATE_FORMAT(dateJoined, '%d-%m-%Y') AS user_joined,userRole
         FROM users
         WHERE userEmail = '${userEmail}';
         `;
@@ -52,7 +52,7 @@ class User {
     fetchUsers(req, res) {
         const querySt = 
         `
-        SELECT id, userName, userSurname, userGender, cellNumber, userEmail, userImage, DATE_FORMAT(dateJoined, '%d-%m-%Y') AS user_joined
+        SELECT id, userName, userSurname, userGender, cellNumber, userEmail, userImage, DATE_FORMAT(dateJoined, '%d-%m-%Y') AS user_joined,userRole
         FROM users;
         `;
         
@@ -65,7 +65,7 @@ class User {
     fetchUser(req, res) {
         const querySt = 
         `
-        SELECT id, userName, userSurname, userGender, cellNumber, userEmail, userImage, DATE_FORMAT(dateJoined, '%d-%m-%Y') AS user_joined
+        SELECT id, userName, userSurname, userGender, cellNumber, userEmail, userImage, DATE_FORMAT(dateJoined, '%d-%m-%Y') AS user_joined,userRole
         FROM users
         WHERE id = ?;
         `;
@@ -141,7 +141,7 @@ class User {
 
 class Product {
     fetchProducts(req, res) {
-        const querySt = `SELECT id, category, prodName, artistName, prodDesc, prodPrice,prodImage,prodQuantity
+        const querySt = `SELECT productId, category, prodName, artistName, prodDesc, prodPrice,prodImage,prodQuantity
         FROM products;`;
         dB.query(querySt, (err, results)=> {
             if(err) throw err;
@@ -149,9 +149,9 @@ class Product {
         });
     }
     fetchProduct(req, res) {
-        const querySt = `SELECT id, category, prodName, artistName, prodDesc, prodPrice,prodImage,prodQuantity
+        const querySt = `SELECT productId, category, prodName, artistName, prodDesc, prodPrice,prodImage,prodQuantity
         FROM products
-        WHERE id = ?;`;
+        WHERE productId = ?;`;
         dB.query(querySt, [req.params.id], (err, results)=> {
             if(err) throw err;
             res.status(200).json({results: results})
@@ -180,7 +180,7 @@ class Product {
         `
         UPDATE products
         SET ?
-        WHERE id = ?
+        WHERE productId = ?
         `;
         dB.query(querySt,[req.body, req.params.id],
             (err)=> {
@@ -198,7 +198,7 @@ class Product {
         const querySt = 
         `
         DELETE FROM products
-        WHERE id = ?;
+        WHERE productId = ?;
         `;
         dB.query(querySt,[req.params.id], (err)=> {
             if(err) res.status(400).json({err: "Unable to find product."});
@@ -213,9 +213,9 @@ class Cart {
         `
         SELECT prodName, prodPrice, prodImage, artistName
         FROM users
-        inner join cart on users.id = cart.user_id
-        inner join products on cart.product_id = products.productId
-        where cart.user_id = ${req.params.id};
+        inner join carts on users.id = carts.user_id
+        inner join products on carts.product_id = products.productId
+        where carts.user_id = ${req.params.id};
         `;
         dB.query(querySt, (err, results)=> {
             if(err) console.log(err);
@@ -223,26 +223,24 @@ class Cart {
         });
     }
     addToCart(req, res) {
-        const querySt = 
-        `
-        INSERT INTO cart
-        SET ?;
+        const user_id = req.user.id;
+        const querySt = `
+            INSERT INTO carts (user_id, product_id)
+            VALUES (?, ?)
         `;
-        dB.query(querySt, [req.body],
-            (err)=> {
-                if(err){
-                    console.log(err);
-                    res.status(400).json({err: "Unable to insert into cart."});
-                }else {
-                    res.status(200).json({msg: "Event added to cart"});
-                }
+        dB.query(querySt, [user_id, req.body.product_id], (err) => {
+            if (err) {
+                console.log(err);
+                res.status(400).json({ err: "Unable to insert into cart." });
+            } else {
+                res.status(200).json({ msg: "product added to cart" });
             }
-        );
+        });
     }
     updateItemFromCart(req, res){
         const querySt = 
         `
-        UPDATE cart
+        UPDATE carts
         SET ?
         WHERE cartId = ?;
         `;
@@ -260,7 +258,7 @@ class Cart {
     deleteFromCart(req, res) {
         const querySt = 
         `
-        DELETE FROM cart
+        DELETE FROM carts
         WHERE user_id = ?;
         `;
         dB.query(querySt,[req.params.id], (err)=> {
@@ -271,7 +269,7 @@ class Cart {
     deleteItemFromCart(req, res) {
         const querySt = 
         `
-        DELETE FROM cart
+        DELETE FROM carts
         WHERE product_id = ?;
         `;
         dB.query(querySt,[req.params.id], (err)=> {
