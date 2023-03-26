@@ -64,7 +64,7 @@ export default {
         cellNumber: '',
         userEmail: '',
         userPassword: '',
-        userImage: '',
+        userImage: 'https://i.postimg.cc/hv1QDDC5/home-page-profile-user-icon-1320184025620798710.png',
         dateJoined: ''
       },
     }
@@ -76,11 +76,12 @@ export default {
   },
   methods: {
     async addUser() {
-      await this.$store.dispatch('addUser', this.data);
-      this.$emit('user-added');
-      this.resetForm();
-      this.$router.push('/login');
-    },
+  this.data.dateJoined = new Date().toISOString(); // Set the dateJoined property to the current date
+  await this.$store.dispatch('addUser', this.data);
+  this.$emit('user-added');
+  this.resetForm();
+  this.$router.push('/login');
+},
     resetForm() {
       this.data.userName = '';
       this.data.userSurname = '';
