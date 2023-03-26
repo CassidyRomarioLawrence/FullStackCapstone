@@ -211,7 +211,7 @@ class Cart {
     fetchCart(req, res) {
         const querySt = 
         `
-        SELECT prodName, prodPrice, prodImage, artistName
+        SELECT cartId,prodName, prodPrice, prodImage, artistName,quantity
         FROM users
         inner join carts on users.id = carts.user_id
         inner join products on carts.product_id = products.productId
@@ -223,20 +223,25 @@ class Cart {
         });
     }
     addToCart(req, res) {
-        const user_id = req.user.id;
+        const userId = req.params.id;
+        const productData = req.body;
+        productData.user_id = userId;
+    
         const querySt = `
-            INSERT INTO carts (user_id, product_id)
-            VALUES (?, ?)
+            INSERT INTO carts
+            SET ?
         `;
-        dB.query(querySt, [user_id, req.body.product_id], (err) => {
+    
+        dB.query(querySt, [productData], (err) => {
             if (err) {
                 console.log(err);
                 res.status(400).json({ err: "Unable to insert into cart." });
             } else {
-                res.status(200).json({ msg: "product added to cart" });
+                res.status(200).json({ msg: "Event added to cart" });
             }
         });
     }
+    
     updateItemFromCart(req, res){
         const querySt = 
         `
@@ -256,25 +261,33 @@ class Cart {
         );    
     }
     deleteFromCart(req, res) {
-        const querySt = 
-        `
-        DELETE FROM carts
-        WHERE user_id = ?;
+        const querySt = `
+            DELETE FROM carts
+            WHERE user_id = ?;
         `;
-        dB.query(querySt,[req.params.id], (err)=> {
-            if(err) console.log(err); res.status(400).json({err: "All cart items was not deleted."});
-            res.status(200).json({msg: "Cart deleted."});
-        })
+        dB.query(querySt, [req.params.id], (err) => {
+            if (err) {
+                console.log(err);
+                res.status(400).json({ err: "All cart items were not deleted." });
+            } else {
+                res.status(200).json({ msg: "Cart deleted." });
+            }
+        });
     }
+    
     deleteItemFromCart(req, res) {
         const querySt = 
         `
         DELETE FROM carts
-        WHERE product_id = ?;
+        WHERE cartId = ?;
         `;
         dB.query(querySt,[req.params.id], (err)=> {
-            if(err) console.log(err); res.status(400).json({err: "The cart item was not deleted."});
-            res.status(200).json({msg: "A cart item was deleted"});
+            if(err){
+                console.log(err);
+                res.status(400).json({err: "The cart item was not deleted."});
+            } else{
+                res.status(200).json({msg: "A cart item was deleted"});
+            }
         })
     }
 }
