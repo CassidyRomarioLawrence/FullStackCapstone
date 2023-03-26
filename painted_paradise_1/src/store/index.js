@@ -3,14 +3,16 @@ import axios from 'axios';
 
 export default createStore({
   state: {
-    user: JSON.parse(localStorage.getItem('user')) || null,
+    user: null,
+    isAuthenticated: false,
     products: null,
-    product:null,
-    users:null,
-    message:null,
+    product: null,
+    users: null,
+    message: null,
     loader: true,
-    cart:[]
+    cart: []
   },
+  
   mutations: {
 
 // =========PRODUCT MUTATIONS====================
@@ -24,12 +26,18 @@ export default createStore({
 
 // =========USER MUTATIONS=======================
     
+    setUsers(state, users) {
+      state.users = users
+    },
     setUser(state, user) {
       state.user = user;
       localStorage.setItem('user', JSON.stringify(user));
+      state.isAuthenticated = true;
     },
-    setUsers(state, users) {
-      state.users = users
+    unsetUser(state) {
+      state.user = null;
+      localStorage.removeItem('user');
+      state.isAuthenticated = false;
     },
 
 // =========MESSAGE MUTATION=====================
@@ -181,24 +189,21 @@ async updateUser({ commit, state }, data) {
 
 // ================LOGIN===============================
 
-async login(context, payload) {
+async login({ commit }, credentials) {
   try {
-    const res = await axios.post('https://cassidy-capstoneproject.onrender.com/login', payload);
-    console.log('Results:', res);
-    const { result, jwToken, msg, err } = await res.data;
-    if (result) {
-      context.commit('setUser', result);
-      context.commit('setToken', jwToken);
-      localStorage.setItem('login_token', jwToken);
-      localStorage.setItem('user', JSON.stringify(result));
-      context.commit('setMessage', msg);
-    } else {
-      context.commit('setMessage', err);
-    }
+    const response = await axios.post('https://cassidy-capstoneproject.onrender.com/login', credentials);
+    const { token, user } = response.data;
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    commit('setUser', user);
   } catch (error) {
-    console.error(error);
+    commit('setMessage', 'Invalid email or password');
   }
-    },
+  commit('setLoader', false);
+},
+logout({ commit }) {
+  axios.defaults.headers.common.Authorization = '';
+  commit('unsetUser');
+},
 
 // ===============CART ACTIONS==========================
 

@@ -9,7 +9,7 @@
     </div>
     <div class="container">
       <a v-if="!isLoggedIn" href="/login">
-          <button class="btn top-right btn-primary">Login</button>
+          <button class="btn top-right btn-login">Login</button>
         </a>
         <a v-if="isLoggedIn" href="/profile">
           <i class="bi bi-person-circle top-right"></i>
@@ -37,6 +37,12 @@
 </script>
 
 <style>
+
+.btn-login{
+  background: -webkit-linear-gradient(right, #a6f77b, #2dbd6e);
+  border: none;
+}
+
 .title{
     min-height: 100vh;
 }
