@@ -14,9 +14,8 @@ function createToken(user) {
 
 function verifyAToken(req, res, next) {
     try{
-        const token = req.cookies["Valid User"] !== null ? req.cookies["Valid User"] :
-        "Please register" ;
-        const valid = null;
+        const token = localStorage.getItem("Valid User") || "Please register";
+        let valid = null;
         if(token !== "Please register") {
             valid = verify(token, process.env.SECRET_KEY);
             if(valid) {
@@ -32,4 +31,4 @@ function verifyAToken(req, res, next) {
         res.status(400).json({err: e.message});
     }
 }
-module.exports= {createToken, verifyAToken};
+module.exports = { createToken, verifyAToken };
