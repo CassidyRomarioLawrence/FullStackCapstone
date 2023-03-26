@@ -186,7 +186,7 @@ class Product {
             (err)=> {
                 if (err) {
                     (console.log(err));
-                    // res.status(400).json({err: "Could not update product."});
+                    res.status(400).json({err: "Could not update product."});
                 }else {
                     res.status(200).json({msg: "Product successfully updated"});
                 }
