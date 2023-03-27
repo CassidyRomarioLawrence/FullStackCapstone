@@ -7,7 +7,7 @@
       <div class="row justify-content-center">
         <div v-for="product in filteredProducts" :key="product.id" class="col-md-4
         col-sm-6 mb-4">
-          <div class="card" style="width: 16rem;">
+          <div class="card" style="width: 100%;">
             <img :src="product.prodImage" class="card-img-top img-fluid" style="object-fit: cover; height: 30vh;">
             <div class="card-body">
               <h5 class="card-title">{{ product.prodName }}</h5>
