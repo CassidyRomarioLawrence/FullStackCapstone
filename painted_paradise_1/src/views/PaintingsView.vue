@@ -2,7 +2,7 @@
     <div class="bg-img">
         <div class="container-fluid paints">
             <div class="top-display mb-5">
-                <div class="row">
+                <div class="row justify-content-center">
                     <div class="col d-flex bg-light p-2">
                         <button class="btn btn-light btn-close" @click="goBack"></button>
                         <img src="https://i.postimg.cc/JnXRtphM/c-2.gif" alt="" style="width: 4rem;">
