@@ -84,11 +84,104 @@
 </script>
 
 <style scoped>
-a{
-  text-decoration: none;
-  color: white;
+/* Overall container style */
+.container-fluid.contact-info {
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px #ddd;
 }
-form{
-  font-weight: bold;
+
+/* Title style */
+.container-fluid.contact-info h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
 }
+
+/* Form input style */
+.container-fluid.contact-info input[type="text"],
+.container-fluid.contact-info input[type="email"],
+.container-fluid.contact-info select,
+.container-fluid.contact-info textarea {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #f5f5f5;
+  box-shadow: none;
+}
+
+/* Form input focus style */
+.container-fluid.contact-info input[type="text"]:focus,
+.container-fluid.contact-info input[type="email"]:focus,
+.container-fluid.contact-info select:focus,
+.container-fluid.contact-info textarea:focus {
+  outline: none;
+  border: 2px solid #ff7f50;
+}
+
+/* Form submit button style */
+.container-fluid.contact-info input[type="submit"] {
+  display: inline-block;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #ff7f50;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Form submit button hover style */
+.container-fluid.contact-info input[type="submit"]:hover {
+  background-color: #f37055;
+}
+
+/* Social icons container style */
+.container.socials {
+  margin-top: 2rem;
+}
+
+/* Social icon style */
+.container.socials a {
+  font-size: 2rem;
+  margin: 0 1rem;
+  transition: color 0.3s;
+}
+
+/* Social icon hover style */
+.container.socials a:hover {
+  color: #ff7f50;
+}
+
+/* Form validation error message style */
+.help-block.with-errors {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+}
+
+
+/* Form title style */
+#register-card-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Form card container style */
+#register-card {
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px #ddd;
+}
+
+/* Form card content style */
+#register-card-content {
+  text-align: center;
+}
+
 </style>

@@ -1,18 +1,43 @@
 <template>
-    <ProductCards />
+  <div class="container-fluid login">
+    <button class="btn btn-light btn-close" @click="goHome"></button>
+    <h5 class="display-5 text-center mt-4">Contact Us</h5>
+    <ContactForm />
+  </div>
 </template>
 
 <script>
-import ProductCards from '@/components/ContactForm.vue';
+import ContactForm from '@/components/ContactForm.vue';
 
-  export default {
-  name: 'ContactView',
+export default {
+  name: 'LoginView',
   components: {
-      ProductCards
+    ContactForm
+  },
+  methods: {
+    goHome() {
+      this.$router.push({ path: '/' });
     }
   }
+}
 </script>
 
 <style scoped>
+.login {
+  background-image: linear-gradient(180deg, #FFFFFF 0%, #C1A576 50%, #FD6162 100%);
+  min-height: 100vh;
+  position: relative;
+}
 
+.btn-close {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+h5{
+  font-family: 'Dancing Script', cursive;
+}
 </style>

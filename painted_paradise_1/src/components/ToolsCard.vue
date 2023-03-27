@@ -11,10 +11,10 @@
             <div class="card-body">
               <h5 class="card-title">{{ product.prodName }}</h5>
               <p class="card-text">Price : R{{product.prodPrice}}</p>
-              <router-link :to="{name: 'product', params : {id: product.productId}}">
-                <button v-if="isUserLoggedIn" class="btn btn-info">View Product</button>
-                <button v-else class="btn btn-info" disabled>Please Log In to View Product</button>
-              </router-link>
+              <router-link :to="userLoggedIn ? { name: 'product', params: { id: product.productId } } : '/login'">
+  <button v-if="userLoggedIn" class="btn btn-info">View Product</button>
+  <button v-else class="btn btn-info">Log in to View Product</button>
+</router-link>
             </div>
           </div>
         </div>
@@ -43,13 +43,13 @@ export default {
         ? products.value.filter(product => product.category === category)
         : []
     })
-    const isUserLoggedIn = computed(() => {
-      return localStorage.getItem('user_token') !== null;
+    const userLoggedIn = computed(() => {
+      return localStorage.getItem('user_token') !== null
     });
     return {
       filteredProducts,
       loader,
-      isUserLoggedIn,
+      userLoggedIn,
     }
   },
 }

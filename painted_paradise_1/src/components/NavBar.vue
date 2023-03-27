@@ -16,7 +16,10 @@
             <a class="nav-link" href="/#about"><i class="bi bi-info-circle"></i></a>
           </li>
           <li class="nav-item">
-            <a v-if="showAdminLink" class="nav-link" href="/admin"><i class="bi bi-card-list"></i></a>
+            <a class="nav-link" href="/#shop"><i class="bi bi-bag"></i></a>
+          </li>
+          <li class="nav-item" v-if="isLoggedIn">
+            <a class="nav-link" href="/admin"><i class="bi bi-card-list"></i></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/contact"><i class="bi bi-telephone"></i></a>
@@ -26,6 +29,7 @@
     </nav>
   </div>
 </template>
+
 <script>
 export default {
   name: "NavBar",
@@ -35,14 +39,9 @@ export default {
       isLoggedIn: localStorage.getItem('user') ? true : false
     };
   },
-  computed: {
-    showAdminLink() {
-      const userRole = localStorage.getItem('userRole');
-      return userRole !== 'Admin';
-    }
-  }
 };
 </script>
+
 
 
 
