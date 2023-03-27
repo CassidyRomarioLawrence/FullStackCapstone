@@ -34,11 +34,6 @@ import ToolsCard from '@/components/ToolsCard.vue';
     }
 </script>
 <style scoped>
-.tools {
-  backdrop-filter: blur(5px);
-  height: 100%;
-  padding: 2rem;
-}
 
 .bg-img {
   background-image: url(https://i.postimg.cc/ZKHZ16bL/pexels-ovan-545580.jpg);
@@ -52,26 +47,14 @@ import ToolsCard from '@/components/ToolsCard.vue';
 h6 {
   font-family: 'Dancing Script', cursive;
   text-shadow: 3px 3px 3px #FD6162;
-  font-size: 2rem;
 }
 
 .btn-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-@media (max-width: 768px) {
-  h6 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
     font-size: 1.5rem;
+    font-weight: bold;
   }
-  
-  .btn-close {
-    top: 0.5rem;
-    right: 0.5rem;
-    font-size: 1.2rem;
-  }
-}
+
 </style>
