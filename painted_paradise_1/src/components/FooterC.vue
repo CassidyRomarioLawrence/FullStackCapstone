@@ -16,7 +16,6 @@
           <ul class="list-unstyled mb-0">
             <li class="mb-2"><a href="/paintings" class="text-muted">For Paintings</a></li>
             <li class="mb-2"><a href="/tools" class="text-muted">For Tools</a></li>
-            <li class="mb-2"><a href="/bookings" class="text-muted">Bookings</a></li>
           </ul>
         </div>
         <div class="col-lg-2 col-md-6 mb-1 mb-lg-0">

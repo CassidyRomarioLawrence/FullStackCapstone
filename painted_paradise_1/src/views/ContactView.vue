@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ProductCards from '@/components/ProductCards.vue';
+import ProductCards from '@/components/ContactForm.vue';
 
   export default {
   name: 'ContactView',

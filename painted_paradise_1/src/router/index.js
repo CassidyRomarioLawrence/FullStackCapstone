@@ -48,6 +48,16 @@ const routes = [
     component: ()=>import('../views/LoginView.vue')
   },
   {
+    path: '/logout',
+    name: 'logout',
+    component: () => import( '../views/HomeView.vue'),
+    beforeEnter(to, from, next) {
+      localStorage.removeItem('user_token');
+      localStorage.removeItem('user');
+      next({ name: 'home' });
+    }
+  },
+  {
     path: '/register',
     name: 'register',
     component: ()=>import('../views/RegisterView.vue')

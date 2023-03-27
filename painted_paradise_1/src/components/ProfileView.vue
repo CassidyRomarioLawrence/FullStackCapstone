@@ -12,6 +12,7 @@
                 <h5>{{ user.userName }} {{ user.userSurname }}</h5>
                 <p>{{user.userGender}}</p>
                 <i class="far fa-edit mb-5"></i>
+                <router-link :to="{ name: 'logout' }" class="btn logout-btn btn-danger">Logout</router-link>
               </div>
               <div class="col-md-8">
                 <div class="card-body p-4">
@@ -41,17 +42,26 @@
           </div>
         </div>
       </div>
+      <div v-if="loading" class="d-flex justify-content-center align-items-center h-100">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden"><Loader /></span>
+        </div>
+      </div>
     </div>
   </section>
 </template>
-
 <script>
+import Loader from './Loader.vue';
+
 export default {
   computed: {
     user() {
       return this.$store.state.user;
     },
   },
+  components:{
+    Loader
+  }
 };
 </script>
 

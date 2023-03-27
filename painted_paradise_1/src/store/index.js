@@ -9,7 +9,7 @@ export default createStore({
     users: null,
     message: null,
     loader: true,
-    cart: []
+    cart:null
   },
   
   mutations: {
@@ -34,7 +34,6 @@ export default createStore({
     },
     logout(state) {
       state.user = null
-      localStorage.removeItem('user')
     },
 
 // =========MESSAGE MUTATION=====================
@@ -50,10 +49,36 @@ export default createStore({
     },
 
 // =======CART MUTATION=============================
-  
 addToCart(state, product) {
-  state.cart.push(product)
+  let cart = state.cart ? state.cart : [];
+  let existingProduct = cart.find(p => p.id === product.id);
+  if (existingProduct) {
+    existingProduct.quantity++;
+  } else {
+    product.quantity = 1;
+    cart.push(product);
+  }
+  state.cart = cart;
+  localStorage.setItem('cart', JSON.stringify(cart));
 },
+removeFromCart(state, productId) {
+  let cart = state.cart ? state.cart : [];
+  let existingProduct = cart.find(p => p.id === productId);
+  if (existingProduct) {
+    if (existingProduct.quantity > 1) {
+      existingProduct.quantity--;
+    } else {
+      cart = cart.filter(p => p.id !== productId);
+    }
+    state.cart = cart;
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
+},
+clearCart(state) {
+  state.cart = null;
+  localStorage.removeItem('cart');
+},
+
   },
     
 actions: {
@@ -210,15 +235,17 @@ async login(context, payload) {
   }
 },
 
-// ==============LOGOUT================================
-
-logout({ commit }) {
-  commit('logout')
-  window.location.href = '/'
-  window.location.reload()
-},
-
 // ===============CART ACTIONS==========================
+
+addToCart({ commit }, product) {
+  commit('addToCart', product);
+},
+removeFromCart({ commit }, productId) {
+  commit('removeFromCart', productId);
+},
+clearCart({ commit }) {
+  commit('clearCart');
+},
 
 },
   modules: {

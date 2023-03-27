@@ -22,17 +22,6 @@
                 </div>
             </div>
         </div>
-        <div class="jumbotron jumbotron-fluid bg-bookings">
-            <div class="container sections">
-                <div class="row">
-                    <div class="col">
-                        <h5 class="display-5">Make Bookings</h5>
-                        <p class="lead">Book a studio with us.</p>
-                        <a href="bookings.html" class="btn btn-primary">Make a Booking</a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </template>
 
@@ -57,13 +46,7 @@
     background-attachment: fixed;
     min-height: 50vh;
 }
-.bg-bookings {
-    background-image: url(https://i.postimg.cc/YSMkTW7G/pexels-antoni-shkraba-4442077.jpg);
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    min-height: 50vh;
-}
+
 .sections{
     display: flex;
     justify-content: center;

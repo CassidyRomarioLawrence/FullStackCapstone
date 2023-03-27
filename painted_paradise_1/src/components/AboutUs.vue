@@ -15,7 +15,7 @@
   </div>
   <div class="col-md-6 second-para d-flex justify-content-center align-items-center mt-3">
     <p class="text-center p-3 para">
-      We also offer studios that are available for bookings should artists need them. We work to ensure that our artists are fairly compensated for their work, and we strive to minimize our impact on the environment by using sustainable and eco-friendly practices wherever possible.
+      We work to ensure that our artists are fairly compensated for their work, and we strive to minimize our impact on the environment by using sustainable and eco-friendly practices wherever possible.
 
       Thank you for choosing PaintedParadise as your destination for art. We look forward to helping you find the perfect piece to enhance your home or office, and to enrich your life with the beauty and inspiration of art.
     </p>

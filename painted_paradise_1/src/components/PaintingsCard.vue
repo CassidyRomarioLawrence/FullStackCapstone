@@ -12,9 +12,10 @@
       <h5 class="card-title">{{ product.prodName }}</h5>
       <p class="card-text">Artist : {{product.artistName}}</p>
       <p class="card-text">Price : {{product.prodPrice}}</p>
-      <router-link :to="{name: 'product', params : {id: product.id}}">
-        <button class="btn btn-info">View Product</button>
-      </router-link>
+      <router-link :to="userLoggedIn ? { name: 'product', params: { id: product.id } } : '/login'">
+  <button v-if="userLoggedIn" class="btn btn-info">View Product</button>
+  <button v-else class="btn btn-info">Log in to View Product</button>
+</router-link>
     </div>
     </div>
   </div>
@@ -34,22 +35,26 @@ export default {
     Loader
   },
   setup() {
-        const store = useStore()
+    const store = useStore()
     store.dispatch("fetchProducts")
-        const products = computed(() => store.state.products)
-        const loader = computed(() => store.state.loader)
-        const filteredProducts2 = computed(() => {
+    const products = computed(() => store.state.products)
+    const loader = computed(() => store.state.loader)
+    const filteredProducts2 = computed(() => {
       const category = "Paintings";
       return Array.isArray(products.value)
-      ? products.value.filter(product => product.category === category)
-      : []
+        ? products.value.filter(product => product.category === category)
+        : []
+    })
+    const userLoggedIn = computed(() => {
+      return localStorage.getItem('user_token') !== null
     })
     return {
-            filteredProducts2,
-            loader
-        }
-    },
+      filteredProducts2,
+      loader,
+      userLoggedIn
     }
+  },
+}
 </script>
 
 <style scoped>

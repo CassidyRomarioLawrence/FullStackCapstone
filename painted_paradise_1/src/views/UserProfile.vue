@@ -8,13 +8,19 @@
 
 <script>
 import ProfileView from '@/components/ProfileView.vue';
+import router from '@/router';
 
     export default {
     name: "ProfileV",
     components: {
         ProfileView
-    }
+    },
+    methods: {
+        goHome() {
+            router.push('/');
+        }
 }
+    }
 </script>
 
 <style scoped>

@@ -16,10 +16,7 @@
             <a class="nav-link" href="/#about"><i class="bi bi-info-circle"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/#shop"><i class="bi bi-bag"></i></a>
-          </li>
-          <li class="nav-item" v-show="userRole === 'admin'">
-            <a class="nav-link" href="/admin"><i class="bi bi-card-list"></i></a>
+            <a v-if="showAdminLink" class="nav-link" href="/admin"><i class="bi bi-card-list"></i></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/contact"><i class="bi bi-telephone"></i></a>
@@ -29,17 +26,21 @@
     </nav>
   </div>
 </template>
-
 <script>
 export default {
   name: "NavBar",
   data() {
     return {
       showNavbar: false,
-      userRole: localStorage.getItem('userRole') || '',
       isLoggedIn: localStorage.getItem('user') ? true : false
     };
   },
+  computed: {
+    showAdminLink() {
+      const userRole = localStorage.getItem('userRole');
+      return userRole !== 'Admin';
+    }
+  }
 };
 </script>
 
