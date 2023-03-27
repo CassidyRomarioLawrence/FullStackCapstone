@@ -1,6 +1,6 @@
 <template>
-  <section class="vh-100" style="background-color: #f4f5f7;">
-    <div class="container py-5 h-100">
+  <section class="vh-100">
+    <div class="container h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-lg-6 mb-4 mb-lg-0">
           <div class="card mb-3" style="border-radius: .5rem;">

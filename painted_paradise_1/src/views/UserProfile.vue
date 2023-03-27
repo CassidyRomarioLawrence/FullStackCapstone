@@ -1,6 +1,7 @@
 <template>
     <div class="container-fluid register">
         <button class="btn btn-light btn-close" @click="goHome"></button>
+        <h1 class="display-1">User Profile</h1>
         <ProfileView />
     </div>
 </template>
@@ -17,6 +18,10 @@ import ProfileView from '@/components/ProfileView.vue';
 </script>
 
 <style scoped>
+h1{
+    font-family: 'Dancing Script', cursive;
+    text-align: center;
+}
 .btn-close {
     position: absolute;
     top: 10px;
