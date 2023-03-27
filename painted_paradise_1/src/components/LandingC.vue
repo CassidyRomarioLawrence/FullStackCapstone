@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col company px-5">
         <h1>Painted Paradise</h1>
-        <p>From contemporary to classic, we have something to inspire every art aficionado..</p>
+        <p>From contemporary to classic, we have something to inspire every art aficionado.</p>
       </div>
     </div>
   </div>
