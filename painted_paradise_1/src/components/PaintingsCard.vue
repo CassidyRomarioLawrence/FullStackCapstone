@@ -3,26 +3,27 @@
     <Loader />
   </div>
   <div v-else>
-<div class="container text-center">
-  <div class="row justify-content-center align-items-center">
-      <div v-for="product in filteredProducts2" :key="product.id" class="col-md-3">
-    <div class="card m-3" style="width: 16rem;">
-      <img :src="product.prodImage" class="card-img-top img-fluid" style="object-fit: cover; height: 30vh;">
-    <div class="card-body">
-      <h5 class="card-title">{{ product.prodName }}</h5>
-      <p class="card-text">Artist : {{product.artistName}}</p>
-      <p class="card-text">Price : {{product.prodPrice}}</p>
-      <router-link :to="userLoggedIn ? { name: 'product', params: { id: product.productId } } : '/login'">
-  <button v-if="userLoggedIn" class="btn btn-info">View Product</button>
-  <button v-else class="btn btn-info">Log in to View Product</button>
-</router-link>
-    </div>
+    <div class="container">
+      <div class="row">
+        <div v-for="product in filteredProducts2" :key="product.id" class="col-md-4 col-sm-6 mb-4">
+          <div class="card" style="width: 100%;">
+            <img :src="product.prodImage" class="card-img-top img-fluid" style="object-fit: cover; height: 30vh;">
+            <div class="card-body">
+              <h5 class="card-title">{{ product.prodName }}</h5>
+              <p class="card-text">Artist: {{ product.artistName }}</p>
+              <p class="card-text">Price: {{ product.prodPrice }}</p>
+              <router-link :to="userLoggedIn ? { name: 'product', params: { id: product.productId } } : '/login'">
+                <button v-if="userLoggedIn" class="btn btn-info">View Product</button>
+                <button v-else class="btn btn-info">Log in to View Product</button>
+              </router-link>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-    </div>
-</div>
-</div>
 </template>
+
 
 <script>
 import { computed } from '@vue/runtime-core';
