@@ -3,20 +3,19 @@
     <Loader />
   </div>
   <div v-else>
-    <div class="container-fluid single-prod">
-      
+    <div class="container single-prod">
       <div class="row justify-content-center align-items-center">
-        <div class="col-md-6 text-center">
-          <img :src="product?.prodImage" alt="" style="width: 20rem; margin-right: 2rem;">
+        <div class="col-lg-6 col-md-12 mb-3 text-center">
+          <img :src="product?.prodImage" alt="" class="w-100">
           <button class="btn btn-success mt-3">Add to cart</button>
         </div>
-        <div class="col-md-6 " style="padding-right: 2rem;">
+        <div class="col-lg-6 col-md-12 mb-3">
           <h5 class="display-5">Product Name : </h5>
-          <p>{{ product?.prodName }}</p><br>
+          <p>{{ product?.prodName }}</p>
           <h5 class="display-5">Artist : </h5>
-          <p>{{ product?.artistName }}</p><br>
+          <p>{{ product?.artistName }}</p>
           <h5 class="display-5">Description : </h5>
-          <p>{{ product?.prodDesc }}</p><br>
+          <p>{{ product?.prodDesc }}</p>
           <h5 class="display-5">Price : </h5>
           <p>R {{ product?.prodPrice }}</p>
         </div>
@@ -58,17 +57,15 @@ export default {
 }
 
 .single-prod {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 80vh;
 }
 
 .single-prod h5{
-    font-family: 'Dancing Script', cursive;
+  font-family: 'Dancing Script', cursive;
 }
+
 .single-prod p{
-    font-family: 'Philosopher', sans-serif;
+  font-family: 'Philosopher', sans-serif;
 }
 </style>
 
