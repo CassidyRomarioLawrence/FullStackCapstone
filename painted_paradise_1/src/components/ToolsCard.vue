@@ -11,7 +11,7 @@
             <div class="card-body">
               <h5 class="card-title">{{ product.prodName }}</h5>
               <p class="card-text">Price : R{{product.prodPrice}}</p>
-              <router-link :to="{name: 'product', params : {id: product.id}}">
+              <router-link :to="{name: 'product', params : {id: product.productId}}">
                 <button v-if="isUserLoggedIn" class="btn btn-info">View Product</button>
                 <button v-else class="btn btn-info" disabled>Please Log In to View Product</button>
               </router-link>
